@@ -21258,7 +21258,7 @@ process.umask = function() { return 0; };
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/ 	
+/******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -21272,20 +21272,20 @@ process.umask = function() { return 0; };
 /******/ 			loaded: false,
 /******/ 			exports: {}
 /******/ 		};
-/******/ 	
+/******/
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/ 	
+/******/
 /******/ 		// Flag the module as loaded
 /******/ 		module.loaded = true;
-/******/ 	
+/******/
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/ 	
+/******/
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = __webpack_modules__;
-/******/ 	
+/******/
 /************************************************************************/
 /******/ 	/* webpack/runtime/chunk loaded */
 /******/ 	(() => {
@@ -21317,7 +21317,7 @@ process.umask = function() { return 0; };
 /******/ 			return result;
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/global */
 /******/ 	(() => {
 /******/ 		__webpack_require__.g = (function() {
@@ -21329,12 +21329,12 @@ process.umask = function() { return 0; };
 /******/ 			}
 /******/ 		})();
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
 /******/ 		// define __esModule on exports
@@ -21345,7 +21345,7 @@ process.umask = function() { return 0; };
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/node module decorator */
 /******/ 	(() => {
 /******/ 		__webpack_require__.nmd = (module) => {
@@ -21354,11 +21354,11 @@ process.umask = function() { return 0; };
 /******/ 			return module;
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/jsonp chunk loading */
 /******/ 	(() => {
 /******/ 		// no baseURI
-/******/ 		
+/******/
 /******/ 		// object to store loaded and loading chunks
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
@@ -21366,19 +21366,19 @@ process.umask = function() { return 0; };
 /******/ 			"/js/app": 0,
 /******/ 			"css/app": 0
 /******/ 		};
-/******/ 		
+/******/
 /******/ 		// no chunk on demand loading
-/******/ 		
+/******/
 /******/ 		// no prefetching
-/******/ 		
+/******/
 /******/ 		// no preloaded
-/******/ 		
+/******/
 /******/ 		// no HMR
-/******/ 		
+/******/
 /******/ 		// no HMR manifest
-/******/ 		
+/******/
 /******/ 		__webpack_require__.O.j = (chunkId) => (installedChunks[chunkId] === 0);
-/******/ 		
+/******/
 /******/ 		// install a JSONP callback for chunk loading
 /******/ 		var webpackJsonpCallback = (parentChunkLoadingFunction, data) => {
 /******/ 			var [chunkIds, moreModules, runtime] = data;
@@ -21401,20 +21401,112 @@ process.umask = function() { return 0; };
 /******/ 			}
 /******/ 			return __webpack_require__.O(result);
 /******/ 		}
-/******/ 		
+/******/
 /******/ 		var chunkLoadingGlobal = self["webpackChunk"] = self["webpackChunk"] || [];
 /******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
 /******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
 /******/ 	})();
-/******/ 	
+/******/
 /************************************************************************/
-/******/ 	
+/******/
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
 /******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/app.js")))
 /******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/css/app.css")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
-/******/ 	
+/******/
 /******/ })()
 ;
+function buscarNew(){
+
+    const publicK = "7701abbe011f97d07fd57cbc7599a3b6";
+    const privateK = "265976491cc8e9aa0bc0b62b38819bea7b45fb89";
+    const ts = Date.now();
+    const ts2 = Date.now() + 1;
+    const APIKey = "5011e9d9f4f0d149651d30d4df35c971";
+
+
+    const busqueda = document.getElementById("busqueda").value.toLowerCase();
+    console.log(busqueda);
+
+    const md5ComposeA = CryptoJS.MD5(ts + privateK + publicK).toString();
+    const md5ComposeB = CryptoJS.MD5(ts2 + privateK + publicK).toString();
+
+    let urlStart = `https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=${busqueda}&ts=${ts}&apikey=${publicK}&hash=${md5ComposeA}`;
+    let urlComic = `https://gateway.marvel.com:443/v1/public/comics?format=comic&formatType=comic&title=${busqueda}&ts=${ts2}&apikey=${publicK}&hash=${md5ComposeB}`;
+    let urlTmdb = `https://api.themoviedb.org/4/search/movie?api_key=${APIKey}&language=es-ES&query=${busqueda}`;
+
+    let urlBackMarvelChar = `/datacharacterMarvelChar/${busqueda}`;
+    let urlBackMarvelComics = `/datacharacterMarvelComics/${busqueda}`;
+    let urlBackTmdb = `/datacharacterTmdb/${busqueda}`;
+
+    const prueba = axios.get(urlStart)
+    const resultBackMarvelChar =  axios.get(urlBackMarvelChar);
+    const resultBacMarvelComics =   axios.get(urlBackMarvelComics);
+    const resultBackTmdb =  axios.get(urlBackTmdb);
+
+    console.log("resultado de Busqueda en el BackEnd");
+    console.log(prueba);
+    console.log(resultBackMarvelChar);
+    console.log(resultBacMarvelComics);
+    console.log(resultBackTmdb);
+    console.log("hasta aqui");
+
+    hideH1();
+    if (resultBackMarvelChar.data.length != 0 || resultBacMarvelComics.data.length != 0 ||resultBackTmdb.data.length != 0) {
+
+        console.log("BackData en función")
+
+
+        if(resultBackMarvelChar.data != ""){
+            console.log(resultBackMarvelChar.data);
+            document.getElementById("visorChar").innerHTML = resultBackMarvelChar.data.map(composeStringCharMarvel).join(" ");
+        }
+
+        if(resultBacMarvelComics.data != ""){
+            console.log(resultBacMarvelComics.data);
+            document.getElementById("visorComics").innerHTML += resultBacMarvelComics.data.map(composeStringDataComicMarvel).join(" ");
+        }
+        if(resultBackTmdb.data != ""){
+            console.log(resultBackTmdb.data);
+            document.getElementById("visorTmdb").innerHTML += resultBackTmdb.data.map(composeStringDataBackTmdb).join(" ");
+        }
+
+
+    } else {
+        console.log("Aquí comienzan las peticiones AXIOS");
+        const prueba = axios.get(urlStart)
+
+
+        //const requestStart = axios.request(urlStart);
+        //console.log("startKey");
+        //console.log(requestStart);
+        //console.log("-------------")
+        //const requestComic =  axios.get(urlComic);
+        //console.log("comics");
+        //console.log(requestComic.data.data);
+        //console.log("-------------")
+        //const respuesta =  axios.get(urlTmdb);
+        //console.log("Tmdb");
+        //console.log(respuesta.data);
+        //console.log("-------------")
+
+        if (requestStart.status === 200 || requestComic.status === 200 || respuesta === 200) {
+
+            document.getElementById("visorChar").innerHTML = requestStart.data.data.results.map(composeStringStart).join(" ");
+            document.getElementById("visorComics").innerHTML += requestComic.data.data.results.map(composeStringComic).join(" ");
+            document.getElementById("visorTmdb").innerHTML += respuesta.data.results.map(composeTmdb).join(" ");
+
+        } else {
+            document.getElementById("visor").innerHTML = "Hay algún problema";
+        }
+    }
+};
+
+function hideH1(){
+    document.getElementById("h1Char").style.display='';
+    document.getElementById("h1Comic").style.display='';
+    document.getElementById("h1film").style.display='';
+
+};

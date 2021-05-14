@@ -318,62 +318,66 @@ async function buscar() {
 
     let urlStart = `https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=${busqueda}&ts=${ts}&apikey=${publicK}&hash=${md5ComposeA}`;
     let urlComic = `https://gateway.marvel.com:443/v1/public/comics?format=comic&formatType=comic&title=${busqueda}&ts=${ts2}&apikey=${publicK}&hash=${md5ComposeB}`;
-    let urlTmdb = `https://api.themoviedb.org/4/search/movie?api_key=5011e9d9f4f0d149651d30d4df35c971&language=es-ES&query=${busqueda}`;
-
+    let urlTmdb = `https://api.themoviedb.org/4/search/movie?api_key=${APIKey}&language=es-ES&query=${busqueda}`;
 
     let urlBackMarvelChar = `/datacharacterMarvelChar/${busqueda}`;
     let urlBackMarvelComics = `/datacharacterMarvelComics/${busqueda}`;
     let urlBackTmdb = `/datacharacterTmdb/${busqueda}`;
 
-    //document.getElementById("busqueda").addEventListener('click',limpiar);
 
+    const resultBackMarvelChar = await axios.get(urlBackMarvelChar);
+    const resultBacMarvelComics =  await axios.get(urlBackMarvelComics);
+    const resultBackTmdb = await axios.get(urlBackTmdb);
 
-    const resultMarvelChar = await axios.get(urlBackMarvelChar);
-    const resultMarvelComics =  await axios.get(urlBackMarvelComics);
-    const resultTmdb = await axios.get(urlBackTmdb);
-
-    console.log("resultado Query");
-    console.log(resultMarvelChar);
-    console.log(resultMarvelComics);
-    console.log(resultTmdb);
+    console.log("resultado de Busqueda en el BackEnd");
+    console.log(resultBackMarvelChar);
+    console.log(resultBacMarvelComics);
+    console.log(resultBackTmdb);
     console.log("hasta aqui");
 
     hideH1();
-    if (resultMarvelChar.data.length != 0 || resultMarvelComics.data.length != 0 ||resultTmdb.data.length != 0) {
+    if (resultBackMarvelChar.data.length != 0 || resultBacMarvelComics.data.length != 0 ||resultBackTmdb.data.length != 0) {
+
         console.log("BackData en función")
-        console.log(resultMarvelComics.data);
-        if(resultMarvelChar.data != ""){
-            document.getElementById("visorChar").innerHTML = resultMarvelChar.data.map(composeStringCharMarvel).join(" ");
+
+
+        if(resultBackMarvelChar.data != ""){
+            console.log(resultBackMarvelChar.data);
+            document.getElementById("visorChar").innerHTML = resultBackMarvelChar.data.map(composeStringCharMarvel).join(" ");
         }
 
-        if(resultMarvelComics.data != ""){
-            document.getElementById("visorComics").innerHTML += resultMarvelComics.data.map(composeStringDataComicMarvel).join(" ");
+        if(resultBacMarvelComics.data != ""){
+            console.log(resultBacMarvelComics.data);
+            document.getElementById("visorComics").innerHTML += resultBacMarvelComics.data.map(composeStringDataComicMarvel).join(" ");
         }
-        if(resultTmdb.data != ""){
-            document.getElementById("visorTmdb").innerHTML += resultTmdb.data.map(composeStringDataBackTmdb).join(" ");
+        if(resultBackTmdb.data != ""){
+            console.log(resultBackTmdb.data);
+            document.getElementById("visorTmdb").innerHTML += resultBackTmdb.data.map(composeStringDataBackTmdb).join(" ");
         }
 
 
     } else {
-        console.log("else");
-        const requestStart = axios.request(urlStart);
-        //console.log("startKey");
-        //console.log(requestStart);
-        //console.log("-------------")
-        //const requestComic = await axios.get(urlComic);
-        //console.log("comics");
-        //console.log(requestComic.data.data);
-        //console.log("-------------")
-        //const respuesta = await axios.get(urlTmdb);
-        //console.log("Tmdb");
-        //console.log(respuesta.data);
-        //console.log("-------------")
+        console.log("Aquí comienzan las peticiones AXIOS");
 
-        if (requestStart.status === 200 || requestComic.status === 200 || respuesta === 200) {
+
+        const requestStart = await axios.request(urlStart);
+        console.log("startKey");
+        console.log(requestStart);
+        console.log("-------------")
+        const requestComic = await axios.get(urlComic);
+        console.log("comics");
+        console.log(requestComic.data.data);
+        console.log("-------------")
+        const resquestTmdb = await axios.get(urlTmdb);
+        console.log("Tmdb");
+        console.log(resquestTmdb.data);
+        console.log("-------------")
+
+        if (requestStart.status === 200 || requestComic.status === 200 || resquestTmdb.status === 200) {
 
             document.getElementById("visorChar").innerHTML = requestStart.data.data.results.map(composeStringStart).join(" ");
             document.getElementById("visorComics").innerHTML += requestComic.data.data.results.map(composeStringComic).join(" ");
-            document.getElementById("visorTmdb").innerHTML += respuesta.data.results.map(composeTmdb).join(" ");
+            document.getElementById("visorTmdb").innerHTML += resquestTmdb.data.results.map(composeTmdb).join(" ");
 
         } else {
             document.getElementById("visor").innerHTML = "Hay algún problema";
