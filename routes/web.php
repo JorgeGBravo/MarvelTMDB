@@ -34,4 +34,6 @@ Route::get('/datacharacterTmdb/{query}', [DataController::class, 'loguedCheckCar
 
 
 Route::post('/datacharacter', [DataController::class, 'postCharacter']);
+Route::post('/postSafeQuery', [DataController::class, 'postSearchQuery']);
 Route::post('/cardSafeLogin', [DataController::class, 'cardSafeOnLogin']);
+Route::post('/cardCheckView', [DataController::class, 'cardCheckView']);

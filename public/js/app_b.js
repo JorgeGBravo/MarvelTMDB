@@ -20,7 +20,11 @@ function composeStringUrlNewCard(dataNewCard){
 
 function arrayurls(data){
     let arrayurl = [];
-    data.forEach(item => arrayurl.push(item));
+    data.forEach(function (data){
+        if (data != "inAppLink"){
+            arrayurl.push(data);
+        }
+    });
     //console.log(arrayurl);
     return arrayurl;
 }
@@ -29,8 +33,6 @@ function arrayurls(data){
 function composeStringStart(data) {
     console.log("Aquí...")
     let urlStart = `/datacharacter`;
-
-
 
     axios({
         method: 'post',
@@ -51,61 +53,74 @@ function composeStringStart(data) {
     });
 
     if (data.description != null){
-        return `<div class="max-w-md bg-white px-8 py-6 rounded-xl space-y-5 items-center">
-            			<div class="flex flex-col items-center justify-center bg-white p-4 shadow rounded-lg">
-            				<div class="inline-flex shadow-lg border border-gray-200 rounded-full overflow-hidden h-40 w-40">
-            				<button class="text-blueGray-500 background-transparent font-bold uppercase px-3 py-1 text-xs outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" >
-            					<img src="${data.thumbnail.path}.${data.thumbnail.extension}" alt="" class="h-full w-full">
-            					</button>
+        return `
+            			<div class="flex-col bg-white p-4 shadow rounded-lg">
+            			    <div>
+            				    <button class="text-blueGray-500 background-transparent font-bold uppercase px-3 py-1 text-xs outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onclick="safeCard(${data.id})">
+            				        <div class="inline-flex shadow-lg border border-gray-200 rounded-full overflow-hidden h-52 w-52">
+            					        <img src="${data.thumbnail.path}.${data.thumbnail.extension}" alt="" class="h-full w-full" ">
+            				        </div>
+            				    </button>
+            				    <h2 class="mt-4 font-bold text-xl">${data.name}</h2>
+                            </div>
+                            <div>
+            				    <p class="text-xs text-gray-500 text-center mt-3 overflow-y-auto">
+            					    ${data.description}
+            				    </p>
             				</div>
-
-            				<h2 class="mt-4 font-bold text-xl">${data.name}</h2>
-
-            				<p class="text-xs text-gray-500 text-center mt-3">
-            					${data.description}
-            				</p>
-
-            				<ul class="flex flex-row mt-4 space-x-2">
-            					${data.urls.map(composeStringUrls).join("")}
-            				</ul>
-            				<h6 class="mt-2 text-sm font-medium">Data provided by Marvel. © 2014 Marvel</h6>
-            			</div>
-            		</div>
-            	</div>`
+            				<div class="flex flex-col items-center">
+            				    <ul class="flex flex-row mt-4 space-x-2">
+            					    ${data.urls.map(composeStringUrls).join("")}
+            				    </ul>
+            				    <h6 class="mt-2 text-sm font-medium">Data provided by Marvel.</h6>
+            				    <h6 class="mt-2 text-sm font-medium">© 2014 Marvel</h6>
+            				    <div class="mt-2">
+                                    <div>
+                                        <label class="inline-flex items-center">
+                                            <input type="checkbox" class="form-checkbox h-4 w-4" >
+                                            <span class="ml-2">Visto</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+            			</div>`
 
     }else {
-        return `
-                <div class="max-w-md bg-white px-8 py-6 rounded-xl space-y-5 items-center">
-            			<div class="flex flex-col items-center justify-center bg-white p-4 shadow rounded-lg">
-            				<div class="inline-flex shadow-lg border border-gray-200 rounded-full overflow-hidden h-40 w-40">
-            				<button class="text-blueGray-500 background-transparent font-bold uppercase px-3 py-1 text-xs outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onclick="safeCard(${data.id}">
-            					    <img src="${data.thumbnail.path}.${data.thumbnail.extension}" alt="" class="h-full w-full"/>
-            					</button>
-            				</div>
-
+        return `    <div class="flex-col bg-white p-4 shadow rounded-lg content-around ">
+            			<div>
+            				<button class="text-blueGray-500 background-transparent font-bold uppercase px-3 py-1 text-xs outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"  type="button" onclick="safeCard(${data.id})">
+            				    <div class="inline-flex shadow-lg border border-gray-200 rounded-full overflow-hidden h-52 w-52">
+            					    <img src="${data.thumbnail.path}.${data.thumbnail.extension}" alt="" class="h-full w-full" ">
+            				    </div>
+            				</button>
             				<h2 class="mt-4 font-bold text-xl">${data.name}</h2>
-
+            			</div>
+            			<div>
             				<p class="text-xs text-gray-500 text-center mt-3">
             					No provisto de descripción alguna.
             				</p>
-
+            			</div>
+                        <div class="flex flex-col items-center">
             				<ul class="flex flex-row mt-4 space-x-2">
             					${data.urls.map(composeStringUrls).join("")}
             				</ul>
-            				<h6 class="mt-2 text-sm font-medium">Data provided by Marvel. © 2014 Marvel</h6>
-            			</div>
-            		</div>
-            	</div>`
+            				<h6 class="mt-2 text-sm font-medium">Data provided by Marvel.</h6>
+            				<h6 class="mt-2 text-sm font-medium">© 2014 Marvel</h6>
+            				<div class="mt-2 ">
+                                <div>
+                                  <label>
+                                    <input type="checkbox" class="form-checkbox h-4 w-4" >
+                                    <span class="ml-2">Visto</span>
+                                  </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`
     }
 }
 
 function composeStringComic(data) {
-    console.log("data.....");
-    console.log(data.characters.items);
-    console.log("...............");
-
     let urlStart = `/datacharacter`;
-
 
     axios({
         method: 'post',
@@ -126,29 +141,57 @@ function composeStringComic(data) {
         }
 
     });
-
-     return `<div class="min-h-screen min-w-screen bg-gray-200 dark:bg-gray-900 ">
-         <div>
-             <div class="flex flex-col max-w-md bg-white px-8 py-6 rounded-xl space-y-5 items-center">
-                 <h3 class="font-serif font-bold text-gray-900 text-xl">${data.title}</h3>
-                 <button class="text-blueGray-500 background-transparent font-bold uppercase px-3 py-1 text-xs outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onclick="safeCard(${data.id}">
-                    <img class="w-full rounded-md" src="${data.thumbnail.path}.${data.thumbnail.extension}" alt="motivation"/>
-                 </button>
-                 <!-- <p class="text-center leading-relaxed">${data.id}</p> -->
-                 <p class="text-center leading-relaxed">${data.description}</p>
-                 ${data.urls.map(composeStringUrls).join("")}
-                 <span class="text-center">Data provided by Marvel. © 2014 Marvel</span>
-                 <button class="px-24 py-1 bg-red-600 rounded-md text-white text-sm focus:border-transparent"><a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a></button>
+    if (data.description != null) {
+        return `
+            <div class="h-screen">
+                <div class="flex flex-col max-w-md bg-white px-8 py-6 rounded-xl space-y-5 items-center">
+                    <h3 class="font-serif font-bold text-gray-900 text-xl">${data.title}</h3>
+                    <button class="h-96 w-80 text-blueGray-500 background-transparent font-bold uppercase px-3 py-1 text-xs outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onclick="safeCard(${data.id}">
+                        <img class="h-96 w-80 w-full rounded-md" src="${data.thumbnail.path}.${data.thumbnail.extension}" alt="motivation"/>
+                    </button>
+                    <!-- <p class="text-center leading-relaxed">${data.id}</p> -->
+                    <div class="overflow-auto h-32">
+                        <p class="text-center leading-relaxed">${data.description}</p>
+                    </div>
+                    ${data.urls.map(composeStringUrls).join("")}
+                    <span class="text-center">Data provided by Marvel. © 2014 Marvel</span>
+                    <div class="mt-2">
+                        <div>
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" class="form-checkbox h-4 w-4" >
+                                <span class="ml-2">Visto</span>
+                            </label>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>`
+    } else {
+        return `
+            <div class="h-screen">
+                <div class="flex flex-col max-w-md bg-white px-8 py-6 rounded-xl space-y-5 items-center">
+                    <h3 class="font-serif font-bold text-gray-900 text-xl">${data.title}</h3>
+                    <button class="h-96 w-80 text-blueGray-500 background-transparent font-bold uppercase px-3 py-1 text-xs outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onclick="safeCard(${data.id}">
+                        <img class="h-96 w-80 w-full rounded-md" src="${data.thumbnail.path}.${data.thumbnail.extension}" alt="motivation"/>
+                    </button>
+                    <!-- <p class="text-center leading-relaxed">${data.id}</p> -->
+                    ${data.urls.map(composeStringUrls).join("")}
+                    <span class="text-center">Data provided by Marvel. © 2014 Marvel</span>
+                    <div class="mt-2">
+                        <div>
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" class="form-checkbox h-4 w-4" >
+                                <span class="ml-2">Visto</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>`
+    }
 }
 
-
 function composeTmdb(data) {
-
     let urlStart = `/datacharacter`;
-
 
     axios({
         method: 'post',
@@ -168,21 +211,27 @@ function composeTmdb(data) {
         }
 
     });
-     return `<div class="min-h-screen min-w-screen bg-gray-200 dark:bg-gray-900 ">
-        <div>
+    return `
+        <div class="h-screen">
             <div class="flex flex-col max-w-md bg-white px-8 py-6 rounded-xl space-y-5 items-center">
-                <h3 class="font-serif font-bold text-gray-900 text-xl">${data.original_title}</h3>
-                <button class="text-blueGray-500 background-transparent font-bold uppercase px-3 py-1 text-xs outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onclick="safeCard(${data.id}">
-                    <img class="w-full rounded-md" src="${"https://image.tmdb.org/t/p/original/" + data.poster_path}" alt="motivation" />
+                <h3 class="font-serif font-bold text-gray-900 text-xl text-justify">${data.original_title}</h3>
+                <button class="h-96 w-80 text-blueGray-500 background-transparent font-bold uppercase px-3 py-1 text-xs outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onclick="safeCard(${data.id}">
+                    <img class="h-96 w-80 rounded-md" src="${"https://image.tmdb.org/t/p/original/" + data.poster_path}" alt="motivation"/>
                 </button>
-                <!-- <p class="text-center leading-relaxed">${data.id}</p> -->
-                <p class="text-center leading-relaxed">${data.overview}</p>
+                <div class="overflow-auto h-32">
+                    <p class="text-center leading-relaxed">${data.overview}</p>
+                </div>
                 <span class="text-center">TheMovieDB</span>
-                <button class="px-24 py-1 bg-red-600 rounded-md text-white text-sm focus:border-transparent"><a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a></button>
+                <div class="mt-2">
+                    <div>
+                        <label class="inline-flex items-center">
+                                <input type="checkbox" class="form-checkbox h-4 w-4" >
+                                <span class="ml-2">Visto</span>
+                        </label>
+                    </div>
                 </div>
             </div>
         </div>`
-
 }
 
 function composeStringUrlsBack(data){
@@ -192,112 +241,156 @@ function composeStringUrlsBack(data){
 </button>`;
 }
 
-function composeStringDataComicMarvel(dataResult) {
-    let data = JSON.parse(dataResult.json)
+function composeStringBackComicMarvel(dataResult) {
+    let data = JSON.parse(dataResult.json);
+    console.log('problemas data');
+    console.log(data);
 
     if (data.description != null) {
-            return `<div class="min-h-screen min-w-screen bg-gray-200 dark:bg-gray-900 ">
-            <div>
+            return `
+            <div class="h-screen">
                 <div class="flex flex-col max-w-md bg-white px-8 py-6 rounded-xl space-y-5 items-center">
-                    <h3 class="font-serif font-bold text-gray-900 text-xl">${data.name}</h3>
-                    <button class="text-blueGray-500 background-transparent font-bold uppercase px-3 py-1 text-xs outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onclick="safeCard(${data.id}">
-                        <img class="w-full rounded-md" src="${data.thumbnail.path}.${data.thumbnail.extension}" alt="motivation"/>
+                    <h3 class="font-serif font-bold text-gray-900 text-xl">${data.title}</h3>
+                    <button class="h-96 w-80 text-blueGray-500 background-transparent font-bold uppercase px-3 py-1 text-xs outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onclick="safeCard(${data.id}">
+                        <img class="h-96 w-80 w-full rounded-md" src="${data.thumbnail.path}.${data.thumbnail.extension}" alt="motivation"/>
                     </button>
                     <!-- <p class="text-center leading-relaxed">${data.id}</p> -->
-                    <p class="text-center leading-relaxed">${data.description}</p>
+                    <div class="overflow-auto h-32">
+                        <p class="text-center leading-relaxed">${data.description}</p>
+                    </div>
                     ${data.urls.map(composeStringUrls).join("")}
                     <span class="text-center">Data provided by Marvel. © 2014 Marvel</span>
-                    <button class="px-24 py-1 bg-red-600 rounded-md text-white text-sm focus:border-transparent"><a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a></button>
+                    <div class="mt-2">
+                        <div>
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" class="form-checkbox h-4 w-4" >
+                                <span class="ml-2">Visto</span>
+                            </label>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>`
         } else {
-            return `<div class="min-h-screen min-w-screen bg-gray-200 dark:bg-gray-900 ">
-            <div>
+            return `
+            <div class="h-screen">
                 <div class="flex flex-col max-w-md bg-white px-8 py-6 rounded-xl space-y-5 items-center">
-                    <h3 class="font-serif font-bold text-gray-900 text-xl">${data.name}</h3>
-                    <button class="text-blueGray-500 background-transparent font-bold uppercase px-3 py-1 text-xs outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onclick="safeCard(${data.id}">
-                        <img class="w-full rounded-md" src="${data.thumbnail.path}.${data.thumbnail.extension}" alt="motivation"/>
+                    <h3 class="font-serif font-bold text-gray-900 text-xl">${data.title}</h3>
+                    <button class="h-96 w-80 text-blueGray-500 background-transparent font-bold uppercase px-3 py-1 text-xs outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onclick="safeCard(${data.id}">
+                        <img class="h-96 w-80 w-full rounded-md" src="${data.thumbnail.path}.${data.thumbnail.extension}" alt="motivation"/>
                     </button>
                     <!-- <p class="text-center leading-relaxed">${data.id}</p> -->
                     ${data.urls.map(composeStringUrls).join("")}
                     <span class="text-center">Data provided by Marvel. © 2014 Marvel</span>
-                    <button class="px-24 py-1 bg-red-600 rounded-md text-white text-sm focus:border-transparent"><a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a></button>
+                    <div class="mt-2">
+                        <div>
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" class="form-checkbox h-4 w-4" >
+                                <span class="ml-2">Visto</span>
+                            </label>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>`
+            </div>`
         }
+
+
 }
 function composeStringDataBackTmdb(dataResult) {
     let data = JSON.parse(dataResult.json)
 
-    return `<div class="min-h-screen min-w-screen bg-gray-200 dark:bg-gray-900 bg-white">
-        <div>
+    return `
+        <div class="h-screen">
             <div class="flex flex-col max-w-md bg-white px-8 py-6 rounded-xl space-y-5 items-center">
-                <h3 class="font-serif font-bold text-gray-900 text-xl">${data.original_title}</h3>
-                <button class="text-blueGray-500 background-transparent font-bold uppercase px-3 py-1 text-xs outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onclick="safeCard(${data.id}">
-                    <img class="w-full rounded-md" src="${"https://image.tmdb.org/t/p/original/" + data.poster_path}" alt="motivation"/>
+                <h3 class="font-serif font-bold text-gray-900 text-xl text-justify">${data.original_title}</h3>
+                <button class="h-96 w-80 text-blueGray-500 background-transparent font-bold uppercase px-3 py-1 text-xs outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onclick="safeCard(${data.id}">
+                    <img class="h-96 w-80 rounded-md" src="${"https://image.tmdb.org/t/p/original/" + data.poster_path}" alt="motivation"/>
                 </button>
-                <!-- <p class="text-center leading-relaxed">${data.id}</p> -->
-                <p class="text-center leading-relaxed">${data.overview}</p>
+                <div class="overflow-auto h-32">
+                    <p class="text-center leading-relaxed">${data.overview}</p>
+                </div>
                 <span class="text-center">TheMovieDB</span>
-                <button class="px-24 py-1 bg-red-600 rounded-md text-white text-sm focus:border-transparent"><a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a></button>
+                <div class="mt-2">
+                    <div>
+                        <label class="inline-flex items-center">
+                                <input type="checkbox" class="form-checkbox h-4 w-4" >
+                                <span class="ml-2">Visto</span>
+                        </label>
+                    </div>
                 </div>
             </div>
         </div>`
 }
-function composeStringCharMarvel(dataResult){
+
+
+function composeStringBackCharMarvel(dataResult){
     console.log(dataResult)
     let data = JSON.parse(dataResult.json)
     if (data.description != null){
-        return `<div class="max-w-md bg-white px-8 py-6 rounded-xl space-y-5 items-center">
-            			<div class="flex flex-col items-center justify-center bg-white p-4 shadow rounded-lg">
-            				<button class="text-blueGray-500 background-transparent font-bold uppercase px-3 py-1 text-xs outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onclick="safeCard(${data.id})">
-            				    <div class="inline-flex shadow-lg border border-gray-200 rounded-full overflow-hidden h-40 w-40">
-            					    <img src="${data.thumbnail.path}.${data.thumbnail.extension}" alt="" class="h-full w-full" ">
-            				    </div>
-            				</button>
-
-            				<h2 class="mt-4 font-bold text-xl">${data.name}</h2>
-
-            				<p class="text-xs text-gray-500 text-center mt-3">
-            					${data.description}
-            				</p>
-
-            				<ul class="flex flex-row mt-4 space-x-2">
-            					${data.urls.map(composeStringUrls).join("")}
-            				</ul>
-            				<h6 class="mt-2 text-sm font-medium">Data provided by Marvel. © 2014 Marvel</h6>
-            			</div>
-            		</div>
-            	</div>`
+        return `
+            			<div class="flex-col bg-white p-4 shadow rounded-lg">
+            			    <div>
+            				    <button class="text-blueGray-500 background-transparent font-bold uppercase px-3 py-1 text-xs outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onclick="safeCard(${data.id})">
+            				        <div class="inline-flex shadow-lg border border-gray-200 rounded-full overflow-hidden h-52 w-52">
+            					        <img src="${data.thumbnail.path}.${data.thumbnail.extension}" alt="" class="h-full w-full" ">
+            				        </div>
+            				    </button>
+            				    <h2 class="mt-4 font-bold text-xl">${data.name}</h2>
+                            </div>
+                            <div>
+            				    <p class="text-xs text-gray-500 text-center mt-3 overflow-y-auto">
+            					    ${data.description}
+            				    </p>
+            				</div>
+            				<div class="flex flex-col items-center">
+            				    <ul class="flex flex-row mt-4 space-x-2">
+            					    ${data.urls.map(composeStringUrls).join("")}
+            				    </ul>
+            				    <h6 class="mt-2 text-sm font-medium">Data provided by Marvel.</h6>
+            				    <h6 class="mt-2 text-sm font-medium">© 2014 Marvel</h6>
+            				    <div class="mt-2">
+                                    <div>
+                                        <label class="inline-flex items-center">
+                                            <input type="checkbox" class="form-checkbox h-4 w-4" >
+                                            <span class="ml-2">Visto</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+            			</div>`
 
     }else {
-        return `
-                <div class="max-w-md bg-white px-8 py-6 rounded-xl space-y-5 items-center">
-            			<div class="flex flex-col items-center justify-center bg-white p-4 shadow rounded-lg">
-            				<button class="text-blueGray-500 background-transparent font-bold uppercase px-3 py-1 text-xs outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onclick="safeCard(${data.id})">
-            				    <div class="inline-flex shadow-lg border border-gray-200 rounded-full overflow-hidden h-40 w-40">
+        return `    <div class="flex-col bg-white p-4 shadow rounded-lg content-around ">
+            			<div>
+            				<button class="text-blueGray-500 background-transparent font-bold uppercase px-3 py-1 text-xs outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"  type="button" onclick="safeCard(${data.id})">
+            				    <div class="inline-flex shadow-lg border border-gray-200 rounded-full overflow-hidden h-52 w-52">
             					    <img src="${data.thumbnail.path}.${data.thumbnail.extension}" alt="" class="h-full w-full" ">
             				    </div>
             				</button>
-
             				<h2 class="mt-4 font-bold text-xl">${data.name}</h2>
-
+            			</div>
+            			<div>
             				<p class="text-xs text-gray-500 text-center mt-3">
             					No provisto de descripción alguna.
             				</p>
-
+            			</div>
+                        <div class="flex flex-col items-center">
             				<ul class="flex flex-row mt-4 space-x-2">
             					${data.urls.map(composeStringUrls).join("")}
             				</ul>
-            				<h6 class="mt-2 text-sm font-medium">Data provided by Marvel. © 2014 Marvel</h6>
-            			</div>
-            		</div>
-            	</div>`
-    }
-
-
+            				<h6 class="mt-2 text-sm font-medium">Data provided by Marvel.</h6>
+            				<h6 class="mt-2 text-sm font-medium">© 2014 Marvel</h6>
+            				<div class="mt-2 ">
+                                <div>
+                                  <label>
+                                    <input type="checkbox" class="form-checkbox h-4 w-4" >
+                                    <span class="ml-2">Visto</span>
+                                  </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`
+        }
     }
 
 
@@ -343,12 +436,12 @@ async function buscar() {
 
         if(resultBackMarvelChar.data != ""){
             console.log(resultBackMarvelChar.data);
-            document.getElementById("visorChar").innerHTML = resultBackMarvelChar.data.map(composeStringCharMarvel).join(" ");
+            document.getElementById("visorChar").innerHTML = resultBackMarvelChar.data.map(composeStringBackCharMarvel).join(" ");
         }
 
         if(resultBacMarvelComics.data != ""){
             console.log(resultBacMarvelComics.data);
-            document.getElementById("visorComics").innerHTML += resultBacMarvelComics.data.map(composeStringDataComicMarvel).join(" ");
+            document.getElementById("visorComics").innerHTML += resultBacMarvelComics.data.map(composeStringBackComicMarvel).join(" ");
         }
         if(resultBackTmdb.data != ""){
             console.log(resultBackTmdb.data);
@@ -403,4 +496,21 @@ function safeCard(element) {
         }
     });
 
+}
+
+function checkView(element){
+    let urlCardSafe = `/cardCheckView`;
+
+    console.log(element);
+    axios({
+        method: 'post',
+        url: urlCardSafe,
+        data: {
+            idData: element,
+        }
+    });
+}
+
+function changeImageStyle(){
+    document.getElementById("imagenStyle").src="image2.jpg";
 }

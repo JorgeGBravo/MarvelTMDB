@@ -5,6 +5,7 @@
         </h2>
     </x-slot>
     <div class="py-12">
+        <!--<img class="" id="imagenStyle" src="http://i.annihil.us/u/prod/marvel/i/mg/5/a0/538615ca33ab0.jpg"/> -->
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
@@ -18,11 +19,11 @@
     <div class="bg-white">
         <div class="overflow-x-auto">
             <h1 id="h1Char" class="flex py-5 lg:px-20 md:px-10 px-5 lg:mx-40 md:mx-20 mx-5 font-bold text-4xl text-gray-800 " style="display: none"> Personajes </h1>
-            <div id="visorChar" class="flex flex-row bg-white"></div>
+                <div id="visorChar" class="flex flex-row bg-white"></div>
         </div>
         <div class="overflow-x-auto">
             <h1 id="h1Comic" class="flex py-5 lg:px-20 md:px-10 px-5 lg:mx-40 md:mx-20 mx-5 font-bold text-4xl text-gray-800 " style="display: none"> Comics </h1>
-            <div id="visorComics" class="flex flex-row bg-white"></div>
+                <div id="visorComics" class="flex flex-row bg-white"></div>
         </div>
         <div class="overflow-x-auto">
             <h1 id="h1film" class="flex py-5 lg:px-20 md:px-10 px-5 lg:mx-40 md:mx-20 mx-5 font-bold text-4xl text-gray-800 " style="display: none"> Peliculas </h1>

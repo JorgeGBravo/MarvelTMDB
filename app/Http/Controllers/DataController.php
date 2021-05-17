@@ -135,14 +135,22 @@ class DataController extends Controller
         }
     }
 
-    function cardSafeOnLogin($event){
+    function cardSafeOnLogin(Request $event){
         log::info($event);
 
-        $check = new userCheckView();
+        $check = new UserCheckView();
         $check->idUser = Auth::id();
         $check->idData = $event->input('idData');
         $check->save();
+    }
 
 
+    function cardCheckView(Request $event){
+        log::info($event);
+
+        $check = new UserCheck();
+        $check->idUser = Auth::id();
+        $check->idData = $event->input('idData');
+        $check->save();
     }
 }

@@ -17,6 +17,7 @@ class CreateUserChecksTable extends Migration
             $table->id("idCheck");
             $table->bigInteger("idUser")->unsigned();
             $table->bigInteger("idData")->unsigned();
+            $table->timestamps();
         });
     }
 

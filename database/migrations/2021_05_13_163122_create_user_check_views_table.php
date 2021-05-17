@@ -17,6 +17,7 @@ class CreateUserCheckViewsTable extends Migration
             $table->id("idCheckView");
             $table->bigInteger("idUser")->unsigned();
             $table->bigInteger("idData")->unsigned();
+            $table->timestamps();
         });
     }
 
