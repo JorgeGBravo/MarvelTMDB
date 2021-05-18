@@ -22,4 +22,14 @@ module.exports = {
     },
 
     plugins: [require('@tailwindcss/forms')],
+
+    theme: {
+        extend: {
+            backgroundImage: {
+                'customHeader': "url('/img/customheader.jpg')",
+                'footer-texture': "url('/img/footer-texture.png')",
+            }
+        }
+    }
+
 };

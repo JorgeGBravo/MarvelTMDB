@@ -144,7 +144,7 @@ function composeStringComic(data) {
     if (data.description != null) {
         return `
             <div class="h-screen">
-                <div class="flex flex-col max-w-md bg-white px-8 py-6 rounded-xl space-y-5 items-center">
+                <div class="flex flex-col max-w-md bg-white px-8 py-6 rounded-xl space-y-5 items-center shadow-lg border border-gray-200">
                     <h3 class="font-serif font-bold text-gray-900 text-xl">${data.title}</h3>
                     <button class="h-96 w-80 text-blueGray-500 background-transparent font-bold uppercase px-3 py-1 text-xs outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onclick="safeCard(${data.id}">
                         <img class="h-96 w-80 w-full rounded-md" src="${data.thumbnail.path}.${data.thumbnail.extension}" alt="motivation"/>
@@ -169,7 +169,7 @@ function composeStringComic(data) {
     } else {
         return `
             <div class="h-screen">
-                <div class="flex flex-col max-w-md bg-white px-8 py-6 rounded-xl space-y-5 items-center">
+                <div class="flex flex-col max-w-md bg-white px-8 py-6 rounded-xl space-y-5 items-center shadow-lg border border-gray-200">
                     <h3 class="font-serif font-bold text-gray-900 text-xl">${data.title}</h3>
                     <button class="h-96 w-80 text-blueGray-500 background-transparent font-bold uppercase px-3 py-1 text-xs outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onclick="safeCard(${data.id}">
                         <img class="h-96 w-80 w-full rounded-md" src="${data.thumbnail.path}.${data.thumbnail.extension}" alt="motivation"/>
@@ -213,7 +213,7 @@ function composeTmdb(data) {
     });
     return `
         <div class="h-screen">
-            <div class="flex flex-col max-w-md bg-white px-8 py-6 rounded-xl space-y-5 items-center">
+            <div class="flex flex-col max-w-md bg-white px-8 py-6 rounded-xl space-y-5 items-center shadow-lg border border-gray-200">
                 <h3 class="font-serif font-bold text-gray-900 text-xl text-justify">${data.original_title}</h3>
                 <button class="h-96 w-80 text-blueGray-500 background-transparent font-bold uppercase px-3 py-1 text-xs outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onclick="safeCard(${data.id}">
                     <img class="h-96 w-80 rounded-md" src="${"https://image.tmdb.org/t/p/original/" + data.poster_path}" alt="motivation"/>
@@ -249,7 +249,7 @@ function composeStringBackComicMarvel(dataResult) {
     if (data.description != null) {
             return `
             <div class="h-screen">
-                <div class="flex flex-col max-w-md bg-white px-8 py-6 rounded-xl space-y-5 items-center">
+                <div class="flex flex-col max-w-md bg-white px-8 py-6 rounded-xl space-y-5 items-center shadow-lg border border-gray-200">
                     <h3 class="font-serif font-bold text-gray-900 text-xl">${data.title}</h3>
                     <button class="h-96 w-80 text-blueGray-500 background-transparent font-bold uppercase px-3 py-1 text-xs outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onclick="safeCard(${data.id}">
                         <img class="h-96 w-80 w-full rounded-md" src="${data.thumbnail.path}.${data.thumbnail.extension}" alt="motivation"/>
@@ -274,7 +274,7 @@ function composeStringBackComicMarvel(dataResult) {
         } else {
             return `
             <div class="h-screen">
-                <div class="flex flex-col max-w-md bg-white px-8 py-6 rounded-xl space-y-5 items-center">
+                <div class="flex flex-col max-w-md bg-white px-8 py-6 rounded-xl space-y-5 items-center shadow-lg border border-gray-200">
                     <h3 class="font-serif font-bold text-gray-900 text-xl">${data.title}</h3>
                     <button class="h-96 w-80 text-blueGray-500 background-transparent font-bold uppercase px-3 py-1 text-xs outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onclick="safeCard(${data.id}">
                         <img class="h-96 w-80 w-full rounded-md" src="${data.thumbnail.path}.${data.thumbnail.extension}" alt="motivation"/>
@@ -301,7 +301,7 @@ function composeStringDataBackTmdb(dataResult) {
 
     return `
         <div class="h-screen">
-            <div class="flex flex-col max-w-md bg-white px-8 py-6 rounded-xl space-y-5 items-center">
+            <div class="flex flex-col max-w-md bg-white px-8 py-6 rounded-xl space-y-5 items-center shadow-lg border border-gray-200">
                 <h3 class="font-serif font-bold text-gray-900 text-xl text-justify">${data.original_title}</h3>
                 <button class="h-96 w-80 text-blueGray-500 background-transparent font-bold uppercase px-3 py-1 text-xs outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onclick="safeCard(${data.id}">
                     <img class="h-96 w-80 rounded-md" src="${"https://image.tmdb.org/t/p/original/" + data.poster_path}" alt="motivation"/>

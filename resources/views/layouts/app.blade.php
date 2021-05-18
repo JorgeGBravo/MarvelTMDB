@@ -29,7 +29,7 @@
                 <header class="bg-white shadow">
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
-                        <img class="justify-center" id="imagenStyle" src="http://i.annihil.us/u/prod/marvel/i/mg/5/a0/538615ca33ab0.jpg"/>
+
                     </div>
                 </header>
 
