@@ -23,6 +23,14 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::get('/myCards', function () {
+    return view('myCards');
+})->middleware(['auth'])->name('myCards');
+
+Route::get('/tmdb', function () {
+    return view('tmdb');
+})->middleware(['auth'])->name('tmdb');
+
 require __DIR__.'/auth.php';
 
 

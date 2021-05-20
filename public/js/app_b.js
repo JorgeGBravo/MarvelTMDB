@@ -1,7 +1,12 @@
 
-
-function limpiar() {
-    document.getElementById("prueba").value = "";
+function cleanOnclick(){
+    let cleaner = document.getElementById("search");
+    cleaner.addEventListener("click", function (){
+        document.getElementById("visor").innerHTML = "";
+    }, false);
+}
+function allClean(){
+    document.getElementById("visorTmdb").innerHTML = "";
 }
 
 function composeStringUrls(data){
@@ -21,11 +26,11 @@ function composeStringUrlNewCard(dataNewCard){
 function arrayurls(data){
     let arrayurl = [];
     data.forEach(function (data){
-        if (data != "inAppLink"){
+        if (data.type != "inAppLink"){
             arrayurl.push(data);
         }
     });
-    //console.log(arrayurl);
+    console.log(arrayurl);
     return arrayurl;
 }
 
@@ -47,7 +52,7 @@ function composeStringStart(data) {
             urlLinks: arrayurls(data.urls),
             charComics: arrayurls(data.comics.items),
             charSeries: arrayurls(data.series.items),
-            searchQuery: document.getElementById("busqueda").value,
+            searchQuery: document.getElementById("search").value,
         }
 
     });
@@ -137,7 +142,7 @@ function composeStringComic(data) {
             charComics: arrayurls(data.characters.items),
             dateComics: arrayurls(data.dates),
             urlLinks: arrayurls(data.urls),
-            searchQuery: document.getElementById("busqueda").value,
+            searchQuery: document.getElementById("search").value,
         }
 
     });
@@ -147,7 +152,7 @@ function composeStringComic(data) {
                 <div class="flex flex-col max-w-md bg-white px-8 py-6 rounded-xl space-y-5 items-center shadow-lg border border-gray-200">
                     <h3 class="font-serif font-bold text-gray-900 text-xl">${data.title}</h3>
                     <button class="h-96 w-80 text-blueGray-500 background-transparent font-bold uppercase px-3 py-1 text-xs outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onclick="safeCard(${data.id}">
-                        <img class="h-96 w-80 w-full rounded-md" src="${data.thumbnail.path}.${data.thumbnail.extension}" alt="motivation"/>
+                        <img class="h-96 w-80 w-full rounded-md shadow-lg" src="${data.thumbnail.path}.${data.thumbnail.extension}" alt="motivation"/>
                     </button>
                     <!-- <p class="text-center leading-relaxed">${data.id}</p> -->
                     <div class="overflow-auto h-32">
@@ -172,7 +177,7 @@ function composeStringComic(data) {
                 <div class="flex flex-col max-w-md bg-white px-8 py-6 rounded-xl space-y-5 items-center shadow-lg border border-gray-200">
                     <h3 class="font-serif font-bold text-gray-900 text-xl">${data.title}</h3>
                     <button class="h-96 w-80 text-blueGray-500 background-transparent font-bold uppercase px-3 py-1 text-xs outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onclick="safeCard(${data.id}">
-                        <img class="h-96 w-80 w-full rounded-md" src="${data.thumbnail.path}.${data.thumbnail.extension}" alt="motivation"/>
+                        <img class="h-96 w-80 w-full rounded-md shadow-lg" src="${data.thumbnail.path}.${data.thumbnail.extension}" alt="motivation"/>
                     </button>
                     <!-- <p class="text-center leading-relaxed">${data.id}</p> -->
                     ${data.urls.map(composeStringUrls).join("")}
@@ -207,7 +212,7 @@ function composeTmdb(data) {
             vote_average: data.vote_average,
             vote_count: data.vote_count,
             release_date: data.release_date,
-            searchQuery: document.getElementById("busqueda").value,
+            searchQuery: document.getElementById("search").value,
         }
 
     });
@@ -216,7 +221,7 @@ function composeTmdb(data) {
             <div class="flex flex-col max-w-md bg-white px-8 py-6 rounded-xl space-y-5 items-center shadow-lg border border-gray-200">
                 <h3 class="font-serif font-bold text-gray-900 text-xl text-justify">${data.original_title}</h3>
                 <button class="h-96 w-80 text-blueGray-500 background-transparent font-bold uppercase px-3 py-1 text-xs outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onclick="safeCard(${data.id}">
-                    <img class="h-96 w-80 rounded-md" src="${"https://image.tmdb.org/t/p/original/" + data.poster_path}" alt="motivation"/>
+                    <img class="h-96 w-80 rounded-md shadow-lg" src="${"https://image.tmdb.org/t/p/original/" + data.poster_path}" alt="motivation"/>
                 </button>
                 <div class="overflow-auto h-32">
                     <p class="text-center leading-relaxed">${data.overview}</p>
@@ -252,7 +257,7 @@ function composeStringBackComicMarvel(dataResult) {
                 <div class="flex flex-col max-w-md bg-white px-8 py-6 rounded-xl space-y-5 items-center shadow-lg border border-gray-200">
                     <h3 class="font-serif font-bold text-gray-900 text-xl">${data.title}</h3>
                     <button class="h-96 w-80 text-blueGray-500 background-transparent font-bold uppercase px-3 py-1 text-xs outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onclick="safeCard(${data.id}">
-                        <img class="h-96 w-80 w-full rounded-md" src="${data.thumbnail.path}.${data.thumbnail.extension}" alt="motivation"/>
+                        <img class="h-96 w-80 w-full rounded-md shadow-lg" src="${data.thumbnail.path}.${data.thumbnail.extension}" alt="motivation"/>
                     </button>
                     <!-- <p class="text-center leading-relaxed">${data.id}</p> -->
                     <div class="overflow-auto h-32">
@@ -277,7 +282,7 @@ function composeStringBackComicMarvel(dataResult) {
                 <div class="flex flex-col max-w-md bg-white px-8 py-6 rounded-xl space-y-5 items-center shadow-lg border border-gray-200">
                     <h3 class="font-serif font-bold text-gray-900 text-xl">${data.title}</h3>
                     <button class="h-96 w-80 text-blueGray-500 background-transparent font-bold uppercase px-3 py-1 text-xs outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onclick="safeCard(${data.id}">
-                        <img class="h-96 w-80 w-full rounded-md" src="${data.thumbnail.path}.${data.thumbnail.extension}" alt="motivation"/>
+                        <img class="h-96 w-80 w-full rounded-md shadow-lg" src="${data.thumbnail.path}.${data.thumbnail.extension}" alt="motivation"/>
                     </button>
                     <!-- <p class="text-center leading-relaxed">${data.id}</p> -->
                     ${data.urls.map(composeStringUrls).join("")}
@@ -304,7 +309,7 @@ function composeStringDataBackTmdb(dataResult) {
             <div class="flex flex-col max-w-md bg-white px-8 py-6 rounded-xl space-y-5 items-center shadow-lg border border-gray-200">
                 <h3 class="font-serif font-bold text-gray-900 text-xl text-justify">${data.original_title}</h3>
                 <button class="h-96 w-80 text-blueGray-500 background-transparent font-bold uppercase px-3 py-1 text-xs outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onclick="safeCard(${data.id}">
-                    <img class="h-96 w-80 rounded-md" src="${"https://image.tmdb.org/t/p/original/" + data.poster_path}" alt="motivation"/>
+                    <img class="h-96 w-80 rounded-md shadow-lg" src="${"https://image.tmdb.org/t/p/original/" + data.poster_path}" alt="motivation"/>
                 </button>
                 <div class="overflow-auto h-32">
                     <p class="text-center leading-relaxed">${data.overview}</p>
@@ -395,7 +400,7 @@ function composeStringBackCharMarvel(dataResult){
 
 
 
-async function buscar() {
+async function search() {
     const publicK = "7701abbe011f97d07fd57cbc7599a3b6";
     const privateK = "265976491cc8e9aa0bc0b62b38819bea7b45fb89";
     const ts = Date.now();
@@ -403,19 +408,19 @@ async function buscar() {
     const APIKey = "5011e9d9f4f0d149651d30d4df35c971";
 
 
-    const busqueda = document.getElementById("busqueda").value.toLowerCase();
-    console.log(busqueda);
+    const search = document.getElementById("search").value.toLowerCase();
+    console.log(search);
 
     const md5ComposeA = CryptoJS.MD5(ts + privateK + publicK).toString();
     const md5ComposeB = CryptoJS.MD5(ts2 + privateK + publicK).toString();
 
-    let urlStart = `https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=${busqueda}&ts=${ts}&apikey=${publicK}&hash=${md5ComposeA}`;
-    let urlComic = `https://gateway.marvel.com:443/v1/public/comics?format=comic&formatType=comic&title=${busqueda}&ts=${ts2}&apikey=${publicK}&hash=${md5ComposeB}`;
-    let urlTmdb = `https://api.themoviedb.org/4/search/movie?api_key=${APIKey}&language=es-ES&query=${busqueda}`;
+    let urlStart = `https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=${search}&ts=${ts}&apikey=${publicK}&hash=${md5ComposeA}`;
+    let urlComic = `https://gateway.marvel.com:443/v1/public/comics?format=comic&formatType=comic&title=${search}&ts=${ts2}&apikey=${publicK}&hash=${md5ComposeB}`;
+    let urlTmdb = `https://api.themoviedb.org/4/search/movie?api_key=${APIKey}&language=es-ES&query=${search}`;
 
-    let urlBackMarvelChar = `/datacharacterMarvelChar/${busqueda}`;
-    let urlBackMarvelComics = `/datacharacterMarvelComics/${busqueda}`;
-    let urlBackTmdb = `/datacharacterTmdb/${busqueda}`;
+    let urlBackMarvelChar = `/datacharacterMarvelChar/${search}`;
+    let urlBackMarvelComics = `/datacharacterMarvelComics/${search}`;
+    let urlBackTmdb = `/datacharacterTmdb/${search}`;
 
 
     const resultBackMarvelChar = await axios.get(urlBackMarvelChar);
@@ -429,23 +434,27 @@ async function buscar() {
     console.log("hasta aqui");
 
     hideH1();
-    if (resultBackMarvelChar.data.length != 0 || resultBacMarvelComics.data.length != 0 ||resultBackTmdb.data.length != 0) {
+    if (resultBackMarvelChar.data.length != 0 && resultBacMarvelComics.data.length != 0 && resultBackTmdb.data.length != 0) {
 
         console.log("BackData en función")
 
+        document.getElementById("visorChar").innerHTML = "";
+        document.getElementById("visorComics").innerHTML = "";
+        document.getElementById("visorTmdb").innerHTML = "";
 
-        if(resultBackMarvelChar.data != ""){
+
+        if(resultBackMarvelChar.data != "" ){
             console.log(resultBackMarvelChar.data);
             document.getElementById("visorChar").innerHTML = resultBackMarvelChar.data.map(composeStringBackCharMarvel).join(" ");
         }
 
         if(resultBacMarvelComics.data != ""){
             console.log(resultBacMarvelComics.data);
-            document.getElementById("visorComics").innerHTML += resultBacMarvelComics.data.map(composeStringBackComicMarvel).join(" ");
+            document.getElementById("visorComics").innerHTML = resultBacMarvelComics.data.map(composeStringBackComicMarvel).join(" ");
         }
         if(resultBackTmdb.data != ""){
             console.log(resultBackTmdb.data);
-            document.getElementById("visorTmdb").innerHTML += resultBackTmdb.data.map(composeStringDataBackTmdb).join(" ");
+            document.getElementById("visorTmdb").innerHTML = resultBackTmdb.data.map(composeStringDataBackTmdb).join(" ");
         }
 
 
@@ -468,9 +477,18 @@ async function buscar() {
 
         if (requestStart.status === 200 || requestComic.status === 200 || resquestTmdb.status === 200) {
 
-            document.getElementById("visorChar").innerHTML = requestStart.data.data.results.map(composeStringStart).join(" ");
-            document.getElementById("visorComics").innerHTML += requestComic.data.data.results.map(composeStringComic).join(" ");
-            document.getElementById("visorTmdb").innerHTML += resquestTmdb.data.results.map(composeTmdb).join(" ");
+            if (document.getElementById("visorChar") != null){
+
+                document.getElementById("visorChar").innerHTML = requestStart.data.data.results.map(composeStringStart).join(" ");
+            }
+            if (document.getElementById("visorComics") != null){
+
+                document.getElementById("visorComics").innerHTML = requestComic.data.data.results.map(composeStringComic).join(" ");
+            }
+            if (document.getElementById("visorTmdb") != null){
+
+                document.getElementById("visorTmdb").innerHTML = resquestTmdb.data.results.map(composeTmdb).join(" ");
+            }
 
         } else {
             document.getElementById("visor").innerHTML = "Hay algún problema";
@@ -479,9 +497,18 @@ async function buscar() {
 }
 
 function hideH1(){
-    document.getElementById("h1Char").style.display='';
-    document.getElementById("h1Comic").style.display='';
-    document.getElementById("h1film").style.display='';
+    if (document.getElementById("h1Char") != null){
+
+        document.getElementById("h1Char").style.display='';
+    }
+    if (document.getElementById("h1Comic") != null){
+
+        document.getElementById("h1Comic").style.display='';
+    }
+    if (document.getElementById("h1film") != null){
+
+        document.getElementById("h1film").style.display='';
+    }
 }
 
 function safeCard(element) {

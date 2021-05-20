@@ -13,7 +13,17 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('Inicio') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('myCards')" :active="request()->routeIs('myCards')">
+                        {{ __('Mis Cards') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('tmdb')" :active="request()->routeIs('tmdb')">
+                        {{ __('TMDB') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -30,7 +40,8 @@
                                          onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                             {{ __('Log out') }}
-                        </x-dropdown-link>
+                            </x-dropdown-link>
+                            </form>
                         </button>
                     </x-slot>
 

@@ -61,7 +61,7 @@
                    <div><img class="justify-center h-2/6 w-2/6" src=https://i.ibb.co/FzmsMgP/M-Mdb-1.gif" alt="M-Mdb-1" border="0" style="margin-left: 540px;"></div>
 
                     <div id="buscador">
-                        <label for="busqueda"></label><input id="busqueda" onchange="buscar()"  type="text" placeholder="Busca tu personaje...">
+                        <label for="search"></label><input id="search" onchange="search()"  type="text" placeholder="Busca tu personaje...">
                     </div>
 
                     <div id="visor"></div>
