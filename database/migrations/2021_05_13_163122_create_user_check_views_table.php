@@ -16,7 +16,7 @@ class CreateUserCheckViewsTable extends Migration
         Schema::create('userCheckViews', function (Blueprint $table) {
             $table->id("idCheckView");
             $table->bigInteger("idUser")->unsigned();
-            $table->bigInteger("idData")->unsigned();
+            $table->bigInteger("idPlatform")->unsigned();
             $table->timestamps();
         });
     }

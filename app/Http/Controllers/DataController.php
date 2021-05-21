@@ -136,21 +136,51 @@ class DataController extends Controller
     }
 
     function cardSafeOnLogin(Request $event){
-        log::info($event);
-
-        $check = new UserCheckView();
-        $check->idUser = Auth::id();
-        $check->idData = $event->input('idData');
-        $check->save();
+       //log::info($event);
+        $resultados = DB::select('select idPlatform from usercheckviews  where idUser = "'. Auth::id() .'" AND idPlatform = "'.$event->input('idData').'"' );
+        //log::info($resultados);
+        if ($resultados == null) {
+            $check = new UserCheckView();
+            $check->idUser = Auth::id();
+            $check->idPlatform = $event->input('idPlatform');
+            $check->save();
+        }
     }
 
 
     function cardCheckView(Request $event){
         log::info($event);
+        $results = DB::select('select idPlatform from userchecks  where idUser = "'. Auth::id() .'" AND idPlatform = "'.$event->input('idData').'"' );
+        log::info($results);
+        if ($results == null){
+            $check = new UserCheck();
+            $check->idUser = Auth::id();
+            $check->idPlatform = $event->input('idPlatform');
+            $check->check = '1';
+            $check->save();
+        }
 
-        $check = new UserCheck();
-        $check->idUser = Auth::id();
-        $check->idData = $event->input('idData');
-        $check->save();
     }
+
+    function deleteCardSafeOnLogin(Request $event){
+
+        $results = DB::select('delete from usercheckviews where idPlatform = "'.$event->input('idData').'"');
+
+    }
+
+    function deleteCardCheckView(Request $event){
+        log::info("deleteCardCheckView");
+        $results = DB::select('delete from userchecks where idPlatform = "'.$event->input('idData').'"');
+    }
+
+    function getCardsView(){
+
+        log::info('getCardsView');
+
+        $results = DB::select('select data.json, data.platform from data INNER JOIN usercheckviews ON data.idPlatform = usercheckviews.idPlatform where usercheckviews.idUser = '. Auth::id() .';');
+
+
+        return $results;
+    }
+
 }

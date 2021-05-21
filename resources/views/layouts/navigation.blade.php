@@ -55,7 +55,7 @@
                                                 this.closest('form').submit();">
                                 {{ __('Log out') }}
                             </x-dropdown-link>
-                        </form>
+
                     </x-slot>
                 </x-dropdown>
             </div>

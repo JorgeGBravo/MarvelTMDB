@@ -16,7 +16,8 @@ class CreateUserChecksTable extends Migration
         Schema::create('userChecks', function (Blueprint $table) {
             $table->id("idCheck");
             $table->bigInteger("idUser")->unsigned();
-            $table->bigInteger("idData")->unsigned();
+            $table->bigInteger("idPlatform")->unsigned();
+            $table->string("check")->nullable();
             $table->timestamps();
         });
     }

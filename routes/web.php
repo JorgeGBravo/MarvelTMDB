@@ -39,9 +39,13 @@ Route::get('/datacharacter/{query}', [DataController::class, 'checkCharacter']);
 Route::get('/datacharacterMarvelChar/{query}', [DataController::class, 'loguedCheckCaractersMarvelChar']);
 Route::get('/datacharacterMarvelComics/{query}', [DataController::class, 'loguedCheckCaractersMarvelComics']);
 Route::get('/datacharacterTmdb/{query}', [DataController::class, 'loguedCheckCaractersTmdb']);
+Route::get('/getCardsUser', [DataController::class, 'getCardsView']);
+
 
 
 Route::post('/datacharacter', [DataController::class, 'postCharacter']);
 Route::post('/postSafeQuery', [DataController::class, 'postSearchQuery']);
 Route::post('/cardSafeLogin', [DataController::class, 'cardSafeOnLogin']);
+Route::post('/deleteCardSafeOnLogin', [DataController::class, 'deleteCardSafeOnLogin']);
+Route::post('/deleteCardCheckView', [DataController::class, 'deleteCardCheckView']);
 Route::post('/cardCheckView', [DataController::class, 'cardCheckView']);

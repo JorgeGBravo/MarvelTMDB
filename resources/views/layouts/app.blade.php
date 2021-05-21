@@ -18,11 +18,12 @@
                 integrity="sha512-nOQuvD9nKirvxDdvQ9OMqe2dgapbPB7vYAMrzJihw5m+aNcf0dX53m6YxM4LgA9u8e9eg9QX+/+mPu8kCNpV2A=="
                 crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
        <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
         <script src="{{ asset('js/app_b.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-white">
+        <div class="h-31 bg-white">
             @include('layouts.navigation')
 
             <!-- Page Heading -->
@@ -32,11 +33,10 @@
 
                     </div>
                 </header>
-
+        </div>
             <!-- Page Content -->
             <main class="bg-gray-100">
                 {{ $slot }}
             </main>
-        </div>
     </body>
 </html>
