@@ -43,6 +43,7 @@ Route::get('/getCardsUser', [DataController::class, 'getCardsView']);
 
 
 
+
 Route::post('/datacharacter', [DataController::class, 'postCharacter']);
 Route::post('/postSafeQuery', [DataController::class, 'postSearchQuery']);
 Route::post('/cardSafeLogin', [DataController::class, 'cardSafeOnLogin']);

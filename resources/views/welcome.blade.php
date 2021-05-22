@@ -57,7 +57,7 @@
 
     <div class="row">
 
-        <div class="h-auto"><img class="justify-center h-2/6 w-2/6" src="https://i.ibb.co/Kz6HFYm/MARVEL-The-Movie-db-1.png" alt="MARVEL-The-Movie-db-1" border="0" style="margin-left: 220px;"></div>
+        <div class="h-auto"><img class="justify-center h-2/6 w-2/6" src="{{asset("storage/MARVEL & The Movie db-grey.png")}}" border="0" style="margin-left: 220px;"></div>
         <!--<div class="text-center"><h1 class=" text-red-600 text-4xl font-roboto">The MARVEL and DataBaseMovie</h1></div>-->
         <div id="buscador">
             <label for="search"></label><input id="search" onchange="search()"  type="text" placeholder="Busca tu personaje..." autofocus>

@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Log;
 use DB;
+use Illuminate\Support\Facades\Storage;
 
 class DataController extends Controller
 {

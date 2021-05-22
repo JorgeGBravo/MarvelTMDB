@@ -8,9 +8,9 @@
         <div id="left" class="w-1/5 h-screen"></div>
         <div id="center" class=" w-3/5">
             <div class="flex flex-col ">
-                <img class="md:h-full" style="z-index:1" id="imagenStyle" src="http://i.annihil.us/u/prod/marvel/i/mg/5/a0/538615ca33ab0.jpg"/>
+                <img class="md:h-full" style="z-index:1" id="imagenStyle" src="{{asset("storage/customheader.jpg")}}"/>
                 <!--<div class="bg-custom max-w-7xl mx-auto sm:px-6 lg:px-8">-->
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg -mt-56 opacity-60" style="z-index: 2">
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg opacity-60" style="z-index: 2">
                     <div class=" p-6 bg-white border-b border-gray-200">
                         <div id="buscador" class="text-center mb-10">
                             <label for="search"></label><input id="search" onchange="search()"  type="text" placeholder="Busca tu personaje... " autofocus>
