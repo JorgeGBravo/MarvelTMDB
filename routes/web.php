@@ -49,3 +49,9 @@ Route::post('/cardSafeLogin', [DataController::class, 'cardSafeOnLogin']);
 Route::post('/deleteCardSafeOnLogin', [DataController::class, 'deleteCardSafeOnLogin']);
 Route::post('/deleteCardCheckView', [DataController::class, 'deleteCardCheckView']);
 Route::post('/cardCheckView', [DataController::class, 'cardCheckView']);
+
+
+
+Route::get('/old', function () {
+    return view('old');
+});

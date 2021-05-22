@@ -146,10 +146,10 @@ function composeStringComic(data) {
                     <span class="text-center">Data provided by Marvel. © 2014 Marvel</span>
                     <div class="mt-2">
                         <div>
-                            <label class="inline-flex items-center">
+                            <div class="inline-flex items-center">
                                 <input id="checkView" type="checkbox" class="form-checkbox h-4 w-4" onclick="checkedView(${data.id})" >
                                 <span class="ml-2">Visto</span>
-                            </label>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -168,10 +168,10 @@ function composeStringComic(data) {
                     <span class="text-center">Data provided by Marvel. © 2014 Marvel</span>
                     <div class="mt-2">
                         <div>
-                            <label class="inline-flex items-center">
+                            <div class="inline-flex items-center">
                                 <input id="checkView" type="checkbox" class="form-checkbox h-4 w-4" onclick="checkedView(${data.id})">
                                 <span class="ml-2">Visto</span>
-                            </label>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -213,10 +213,10 @@ function composeTmdb(data) {
                 <span class="text-center">TheMovieDB</span>
                 <div class="mt-2">
                     <div>
-                        <label class="inline-flex items-center">
+                        <div class="inline-flex items-center">
                                 <input id="checkView" type="checkbox" class="form-checkbox h-4 w-4" onclick="checkedView(${data.id})">
                                 <span class="ml-2">Visto</span>
-                        </label>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -251,10 +251,10 @@ function composeStringBackComicMarvel(dataResult) {
                     <span class="text-center">Data provided by Marvel. © 2014 Marvel</span>
                     <div class="mt-2">
                         <div>
-                            <label class="inline-flex items-center">
+                            <div class="inline-flex items-center">
                                 <input id="checkView" type="checkbox" class="form-checkbox h-4 w-4" onclick="checkedView(${data.id})">
                                 <span class="ml-2">Visto</span>
-                            </label>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -273,10 +273,10 @@ function composeStringBackComicMarvel(dataResult) {
                     <span class="text-center">Data provided by Marvel. © 2014 Marvel</span>
                     <div class="mt-2">
                         <div>
-                            <label class="inline-flex items-center">
+                            <div class="inline-flex items-center">
                                 <input id="checkView" type="checkbox" class="form-checkbox h-4 w-4" onclick="checkedView(${data.id})">
                                 <span class="ml-2">Visto</span>
-                            </label>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -302,10 +302,10 @@ function composeStringDataBackTmdb(dataResult) {
                 <span class="text-center">TheMovieDB</span>
                 <div class="mt-2">
                     <div>
-                        <label class="inline-flex items-center">
+                        <div class="inline-flex items-center">
                                 <input id="checkView" type="checkbox" class="form-checkbox h-4 w-4" onclick="checkedView(${data.id})">
                                 <span class="ml-2">Visto</span>
-                        </label>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -646,10 +646,10 @@ function composeStringBackComicMarvelCardSave(dataResult) {
                         <span class="text-center">Data provided by Marvel. © 2014 Marvel</span>
                         <div class="mt-2">
                             <div>
-                                <label class="inline-flex items-center">
+                                <div class="inline-flex items-center">
                                     <input id="checkView" type="checkbox" class="form-checkbox h-4 w-4" onclick="checkedView(${data.id})">
                                     <span class="ml-2">Visto</span>
-                                </label>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -668,10 +668,10 @@ function composeStringBackComicMarvelCardSave(dataResult) {
                         <span class="text-center">Data provided by Marvel. © 2014 Marvel</span>
                         <div class="mt-2">
                             <div>
-                                <label class="inline-flex items-center">
+                                <div class="inline-flex items-center">
                                     <input id="checkView" type="checkbox" class="form-checkbox h-4 w-4" onclick="checkedView(${data.id})">
                                     <span class="ml-2">Visto</span>
-                                </label>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -697,10 +697,10 @@ function composeStringDataBackTmdbCardSave(dataResult) {
                     <span class="text-center">TheMovieDB</span>
                     <div class="mt-2">
                         <div>
-                            <label class="inline-flex items-center">
-                                    <input id="checkView" type="checkbox" class="form-checkbox h-4 w-4" onclick="checkedView(${data.id})">
-                                    <span class="ml-2">Visto</span>
-                            </label>
+                            <div class="inline-flex items-center">
+                                    <input id="checkView" type="checkbox" value="false" class="form-checkbox h-4 w-4" onclick="checkedView(${data.id})">
+                                    <p class="ml-2">Visto</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -711,7 +711,9 @@ function composeStringDataBackTmdbCardSave(dataResult) {
 
 function checkedView(id){
     //console.log(id);
-    if(checkView.checked == true) {
+    let checkBox = document.getElementById("checkView");
+    console.log(checkBox.checked);
+    if (checkBox.checked == true) {
         console.log('voy a cardCheckView');
         cardCheckView(id);
     }else{
