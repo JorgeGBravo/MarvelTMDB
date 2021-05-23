@@ -17,11 +17,11 @@
                 </div>
                 <div id="divComics" class="overflow-x-auto " style="display: none">
                     <h1 id="h1Comic" class="flex py-5 lg:px-20 md:px-10 px-5 lg:mx-40 md:mx-20 mx-5 font-bold text-4xl text-gray-800 mt-12 " > Comics </h1>
-                    <div id="visorComics" class="flex flex-row bg-white mb-20"></div>
+                    <div id="visorComics" class="flex flex-row h-screen bg-gray-200 mb-20"></div>
                 </div>
                 <div id="divFilms" class="overflow-x-auto" style="display: none">
                     <h1 id="h1film" class="flex py-5 lg:px-20 md:px-10 px-5 lg:mx-40 md:mx-20 mx-5 font-bold text-4xl text-gray-800 " > Peliculas </h1>
-                    <div id="visorTmdb" class="flex flex-row bg-white"></div>
+                    <div id="visorTmdb" class="flex flex-row bg-gray-200"></div>
                 </div>
             </div>
         </div>

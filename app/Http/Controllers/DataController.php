@@ -20,27 +20,27 @@ class DataController extends Controller
 {
     function postCharacter(Request $request)
     {
-        $consultIdPlatform = DB::select('select IdPlatform from data where IdPlatform = "'.$request->input('idPlatform').'"');
+        $consultIdPlatform = DB::select('select IdPlatform from data where IdPlatform = "' . $request->input('idPlatform') . '"');
 
-        $idQuerySearchQuery = DB::select('select idQueries from searchqueries where searchQuery = "'.$request->input('searchQuery').'"');
+        $idQuerySearchQuery = DB::select('select idQueries from searchqueries where searchQuery = "' . $request->input('searchQuery') . '"');
 
         $querySearch = $request->input('searchQuery');
 
 
-        if (count($idQuerySearchQuery) == 0){
+        if (count($idQuerySearchQuery) == 0) {
             $query = new searchquery();
             $query->searchQuery = $querySearch;
             $query->save();
         }
 
-        if (count($consultIdPlatform) > 0){
+        if (count($consultIdPlatform) > 0) {
             //Actualizacion json.
 
             $jsonEncode = json_encode($request->input('json'));
             $jsonEncode = str_replace("'", "\'", $jsonEncode);
-            DB::select('update data set json = \''.$jsonEncode.'\' where IdPlatform = "'.$request->input('idPlatform').'"');
+            DB::select('update data set json = \'' . $jsonEncode . '\' where IdPlatform = "' . $request->input('idPlatform') . '"');
 
-        }else{
+        } else {
 
             $data = new data();
             $data->json = json_encode($request->input('json'));
@@ -62,9 +62,9 @@ class DataController extends Controller
             $data->charSeries = json_encode($request->input('charSeries'));
             $data->save();
 
-            $idQuery = DB::select('select idQueries from searchqueries where searchQuery = "'.$request->input('searchQuery').'"');
+            $idQuery = DB::select('select idQueries from searchqueries where searchQuery = "' . $request->input('searchQuery') . '"');
 
-            $datId = DB::select('select idData from data where idPlatform =  "'.$data->idPlatform.'"');
+            $datId = DB::select('select idData from data where idPlatform =  "' . $data->idPlatform . '"');
             $queryData = new QueryData();
             $queryData->idData = $datId[0]->idData;
             $queryData->idQueries = $idQuery[0]->idQueries;
@@ -79,14 +79,12 @@ class DataController extends Controller
 
 
         $resultados = DB::select('select json from data INNER JOIN queryData ON data.idData = queryData.idData INNER JOIN searchqueries ON searchQueries.idQueries = queryData.idQueries
-                        where searchQueries.searchQuery = "'. $query .'" AND platform = "Marvel-Char" AND data.created_at  BETWEEN  "'.Carbon::now()->subDays(10).'" AND "'.Carbon::now().'"');
+                        where searchQueries.searchQuery = "' . $query . '" AND platform = "Marvel-Char" AND data.created_at  BETWEEN  "' . Carbon::now()->subDays(10) . '" AND "' . Carbon::now() . '"');
 
 
-        if (count($resultados) > 0)
-        {
+        if (count($resultados) > 0) {
             return $resultados;
-        } else
-        {
+        } else {
             return false;
         }
     }
@@ -94,13 +92,11 @@ class DataController extends Controller
     function loguedCheckCaractersTmdb($query)
     {
         $resultados = DB::select('select json , data.idData from data INNER JOIN querydata ON data.idData = querydata.idData INNER JOIN searchqueries ON searchqueries.idQueries = querydata.idQueries
-                        where searchqueries.searchQuery = "'. $query .'" AND platform = "TMDb" AND data.created_at  BETWEEN  "'.Carbon::now()->subDays(10).'" AND "'.Carbon::now().'"');
+                        where searchqueries.searchQuery = "' . $query . '" AND platform = "TMDb" AND data.created_at  BETWEEN  "' . Carbon::now()->subDays(10) . '" AND "' . Carbon::now() . '"');
 
-        if (count($resultados) > 0)
-        {
+        if (count($resultados) > 0) {
             return $resultados;
-        } else
-        {
+        } else {
             return false;
         }
     }
@@ -109,14 +105,12 @@ class DataController extends Controller
     {
         log::info($query);
         $resultados = DB::select('select json, data.idData from data INNER JOIN querydata ON data.idData = querydata.idData INNER JOIN searchqueries ON searchqueries.idQueries = querydata.idQueries
-                        where searchqueries.searchQuery = "'. $query .'" AND platform = "Marvel-Char" AND data.created_at  BETWEEN  "'.Carbon::now()->subDays(10).'" AND "'.Carbon::now().'"');
+                        where searchqueries.searchQuery = "' . $query . '" AND platform = "Marvel-Char" AND data.created_at  BETWEEN  "' . Carbon::now()->subDays(10) . '" AND "' . Carbon::now() . '"');
         log::info('resultados');
         log::info($resultados);
-        if (count($resultados) > 0)
-        {
+        if (count($resultados) > 0) {
             return $resultados;
-        } else
-        {
+        } else {
             return false;
         }
     }
@@ -125,20 +119,19 @@ class DataController extends Controller
     function loguedCheckCaractersMarvelComics($query)
     {
         $resultados = DB::select('select json, data.idData from data INNER JOIN querydata ON data.idData = querydata.idData INNER JOIN searchqueries ON searchqueries.idQueries = querydata.idQueries
-                        where searchqueries.searchQuery = "'. $query .'" AND platform = "Marvel-Comics" AND data.created_at  BETWEEN  "'.Carbon::now()->subDays(10).'" AND "'.Carbon::now().'"');
+                        where searchqueries.searchQuery = "' . $query . '" AND platform = "Marvel-Comics" AND data.created_at  BETWEEN  "' . Carbon::now()->subDays(10) . '" AND "' . Carbon::now() . '"');
 
-        if (count($resultados) > 0)
-        {
+        if (count($resultados) > 0) {
             return $resultados;
-        } else
-        {
+        } else {
             return false;
         }
     }
 
-    function cardSafeOnLogin(Request $event){
-       //log::info($event);
-        $resultados = DB::select('select idPlatform from usercheckviews  where idUser = "'. Auth::id() .'" AND idPlatform = "'.$event->input('idData').'"' );
+    function cardSafeOnLogin(Request $event)
+    {
+        //log::info($event);
+        $resultados = DB::select('select idPlatform from usercheckviews  where idUser = "' . Auth::id() . '" AND idPlatform = "' . $event->input('idData') . '"');
         //log::info($resultados);
         if ($resultados == null) {
             $check = new UserCheckView();
@@ -149,11 +142,12 @@ class DataController extends Controller
     }
 
 
-    function cardCheckView(Request $event){
+    function cardCheckView(Request $event)
+    {
         log::info($event);
-        $results = DB::select('select idPlatform from userchecks  where idUser = "'. Auth::id() .'" AND idPlatform = "'.$event->input('idData').'"' );
+        $results = DB::select('select idPlatform from userchecks  where idUser = "' . Auth::id() . '" AND idPlatform = "' . $event->input('idData') . '"');
         log::info($results);
-        if ($results == null){
+        if ($results == null) {
             $check = new UserCheck();
             $check->idUser = Auth::id();
             $check->idPlatform = $event->input('idPlatform');
@@ -163,25 +157,60 @@ class DataController extends Controller
 
     }
 
-    function deleteCardSafeOnLogin(Request $event){
+    function deleteCardSafeOnLogin(Request $event)
+    {
 
-        $results = DB::select('delete from usercheckviews where idPlatform = "'.$event->input('idData').'"');
+        $results = DB::select('delete from usercheckviews where idPlatform = "' . $event->input('idData') . '"');
 
     }
 
-    function deleteCardCheckView(Request $event){
+    function deleteCardCheckView(Request $event)
+    {
         log::info("deleteCardCheckView");
-        $results = DB::select('delete from userchecks where idPlatform = "'.$event->input('idData').'"');
+        $results = DB::select('delete from userchecks where idPlatform = "' . $event->input('idData') . '"');
     }
 
-    function getCardsView(){
+    function getCardsView()
+    {
 
         log::info('getCardsView');
 
-        $results = DB::select('select data.json, data.platform from data INNER JOIN usercheckviews ON data.idPlatform = usercheckviews.idPlatform where usercheckviews.idUser = '. Auth::id() .';');
+        $results = DB::select('select data.json, data.platform from data INNER JOIN usercheckviews ON data.idPlatform = usercheckviews.idPlatform where usercheckviews.idUser = ' . Auth::id() . ';');
 
 
         return $results;
+    }
+
+    function getPlatform()
+    {
+        $results = DB::select('select platform from data ');
+        $finalResults = [];
+        foreach ($results as $result) {
+            if (isset($result->platform)) {
+                if (!array_key_exists(strval($result->platform), $finalResults)) {
+                    $finalResults[strval($result->platform)] = 1;
+                } else {
+                    $finalResults[strval($result->platform)] = $finalResults[strval($result->platform)] + 1;
+                }
+            }
+        }
+        return $finalResults;
+    }
+
+
+    function getCardsTotal()
+    {
+        $results = DB::select('select  from data where platform = "Marvel-Char" ');
+    }
+
+    function getComicsNames()
+    {
+        $results = DB::select('select name from data where platform = "Marvel-Comics" ');
+    }
+
+    function getFilmsNames()
+    {
+        $results = DB::select('select name from data where platform = "TMDb" ');
     }
 
 }

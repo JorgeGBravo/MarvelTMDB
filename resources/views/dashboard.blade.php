@@ -5,7 +5,14 @@
         </h2>
     </x-slot>
     <div id="item" class="flex flex-row">
-        <div id="left" class="w-1/5 h-screen"></div>
+        <div id="left" class="w-1/5 h-screen">
+            <canvas id="myChart" width="400" height="400">
+            </canvas>
+            <script>
+                window.onload = function (){dataChartView()};
+            </script>
+            <h3 style="margin-left: 60px; font-size: 30px; font-family: 'Nunito', sans-serif">Total de Cards Según Plataforma</h3>
+        </div>
         <div id="center" class=" w-3/5">
             <div class="flex flex-col ">
                 <img class="md:h-full" style="z-index:1" id="imagenStyle" src="{{asset("storage/customheader.jpg")}}"/>
@@ -34,6 +41,7 @@
             </div>
         </div>
     </div>
-    <div id="right" class="w-1/5 h-screen"></div>
+    <div id="right" class="w-1/5 h-screen">
+    </div>
 </x-app-layout>
 

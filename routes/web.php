@@ -40,7 +40,7 @@ Route::get('/datacharacterMarvelChar/{query}', [DataController::class, 'loguedCh
 Route::get('/datacharacterMarvelComics/{query}', [DataController::class, 'loguedCheckCaractersMarvelComics']);
 Route::get('/datacharacterTmdb/{query}', [DataController::class, 'loguedCheckCaractersTmdb']);
 Route::get('/getCardsUser', [DataController::class, 'getCardsView']);
-
+Route::get('/typesPlatform',[DataController::class, 'getPlatform']);
 
 
 
