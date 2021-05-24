@@ -405,24 +405,22 @@ async function search() {
     if (resultBackMarvelChar.data.length != 0 && resultBacMarvelComics.data.length != 0 && resultBackTmdb.data.length != 0) {
 
         console.log("BackData en función")
-
-        document.getElementById("visorChar").innerHTML = "";
-        document.getElementById("visorComics").innerHTML = "";
-        document.getElementById("visorTmdb").innerHTML = "";
-
-
-        if(resultBackMarvelChar.data != "" ){
-            console.log(resultBackMarvelChar.data);
+        if (document.getElementById("visorChar") != null){
+            document.getElementById("visorChar").innerHTML = "";
             document.getElementById("visorChar").innerHTML = resultBackMarvelChar.data.map(composeStringBackCharMarvel).join(" ");
+            console.log(resultBackMarvelChar.data);
         }
 
-        if(resultBacMarvelComics.data != ""){
-            console.log(resultBacMarvelComics.data);
+        if (document.getElementById("visorComics") != null){
+            document.getElementById("visorComics").innerHTML = "";
             document.getElementById("visorComics").innerHTML = resultBacMarvelComics.data.map(composeStringBackComicMarvel).join(" ");
+            console.log(resultBacMarvelComics.data);
+
         }
-        if(resultBackTmdb.data != ""){
-            console.log(resultBackTmdb.data);
+        if (document.getElementById("visorTmdb") != null){
+            document.getElementById("visorTmdb").innerHTML = "";
             document.getElementById("visorTmdb").innerHTML = resultBackTmdb.data.map(composeStringDataBackTmdb).join(" ");
+            console.log(resultBackTmdb.data);
         }
 
 

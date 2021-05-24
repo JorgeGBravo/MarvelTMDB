@@ -26,7 +26,7 @@ module.exports = {
     theme: {
         extend: {
             backgroundImage: {
-                'customHeader': "url('/img/customheader.jpg')",
+                'tmdb': "url(`storage/customheader.jpg`)",
                 'footer-texture': "url('/img/footer-texture.png')",
             }
         }

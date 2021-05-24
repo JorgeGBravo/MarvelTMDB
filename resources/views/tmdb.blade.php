@@ -5,10 +5,10 @@
         </h2>
     </x-slot>
 
-        <div id="buscador" class="text-center bg-gray-200">
+        <div id="buscador" class="text-center bg-white">
             <label for="search"></label><input id="search" onchange="search()" type="text" placeholder="Busca tu personaje... "  autofocus>
         </div>
-    <div id="item" class="flex flex-row bg-gray-200">
+    <div id="item" class="flex flex-row bg-green-200">
         <div id="left" class="w-1/5 h-screen"></div>
         <div id="center" class=" w-3/5 -mt-1">
             <div id="visor" class="justify-between mt-52 bg-customHeader ">

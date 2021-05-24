@@ -9,9 +9,11 @@
             <canvas id="myChart" width="400" height="400">
             </canvas>
             <script>
-                window.onload = function (){dataChartView()};
+                window.onload = function (){
+                    dataChartView(setInterval(dataChartView, 10000))
+                };
             </script>
-            <h3 style="margin-left: 60px; font-size: 30px; font-family: 'Nunito', sans-serif">Total de Cards Según Plataforma</h3>
+            <h3 style="margin-left: 60px; font-size: 25px; font-family: 'Nunito', sans-serif">Total de Cards en la Plataforma</h3>
         </div>
         <div id="center" class=" w-3/5">
             <div class="flex flex-col ">
@@ -25,7 +27,7 @@
                     </div>
                 </div>
             </div>
-            <div class=" mt-52 bg-customHeader">
+            <div class=" mt-52 bg-customHeader" style="margin-top: 50px;">
                 <div class="overflow-x-auto">
                     <h1 id="h1Char" class="flex py-5 lg:px-20 md:px-10 px-5 lg:mx-40 md:mx-20 mx-5 font-bold text-4xl text-gray-800 " style="display: none"> Personajes </h1>
                     <div id="visorChar" class="flex flex-row bg-white"></div>
@@ -34,10 +36,10 @@
                     <h1 id="h1Comic" class="flex py-5 lg:px-20 md:px-10 px-5 lg:mx-40 md:mx-20 mx-5 font-bold text-4xl text-gray-800 mt-12 " style="display: none"> Comics </h1>
                     <div id="visorComics" class="flex flex-row bg-white mb-20"></div>
                 </div>
-                <div class="overflow-x-auto ">
+                <!--<div class="overflow-x-auto ">
                     <h1 id="h1film" class="flex py-5 lg:px-20 md:px-10 px-5 lg:mx-40 md:mx-20 mx-5 font-bold text-4xl text-gray-800 " style="display: none"> Peliculas </h1>
                     <div id="visorTmdb" class="flex flex-row bg-white"></div>
-                </div>
+                </div>-->
             </div>
         </div>
     </div>
