@@ -104,11 +104,9 @@ class DataController extends Controller
 
     function loguedCheckCaractersMarvelChar($query)
     {
-        log::info($query);
         $resultados = DB::select('select json, data.idData from data INNER JOIN querydata ON data.idData = querydata.idData INNER JOIN searchqueries ON searchqueries.idQueries = querydata.idQueries
                         where searchqueries.searchQuery = "' . $query . '" AND platform = "Marvel-Char" AND data.created_at  BETWEEN  "' . Carbon::now()->subDays(10) . '" AND "' . Carbon::now() . '"');
-        log::info('resultados');
-        log::info($resultados);
+
         if (count($resultados) > 0) {
             return $resultados;
         } else {
@@ -131,9 +129,7 @@ class DataController extends Controller
 
     function cardSafeOnLogin(Request $event)
     {
-        //log::info($event);
         $resultados = DB::select('select idPlatform from usercheckviews  where idUser = "' . Auth::id() . '" AND idPlatform = "' . $event->input('idData') . '"');
-        //log::info($resultados);
         if ($resultados == null) {
             $check = new UserCheckView();
             $check->idUser = Auth::id();
@@ -145,9 +141,7 @@ class DataController extends Controller
 
     function cardCheckView(Request $event)
     {
-        log::info($event);
         $results = DB::select('select idPlatform from userchecks  where idUser = "' . Auth::id() . '" AND idPlatform = "' . $event->input('idData') . '"');
-        log::info($results);
         if ($results == null) {
             $check = new UserCheck();
             $check->idUser = Auth::id();
@@ -167,14 +161,12 @@ class DataController extends Controller
 
     function deleteCardCheckView(Request $event)
     {
-        log::info("deleteCardCheckView");
         $results = DB::select('delete from userchecks where idPlatform = "' . $event->input('idData') . '"');
     }
 
     function getCardsView()
     {
 
-        log::info('getCardsView');
 
         $results = DB::select('select data.json, data.platform from data INNER JOIN usercheckviews ON data.idPlatform = usercheckviews.idPlatform where usercheckviews.idUser = ' . Auth::id() . ';');
 
@@ -225,14 +217,12 @@ class DataController extends Controller
         $userColor = DB::select('select idUser from color_users');
 
         if ($userColor == null){
-            log::info('new');
             $data = new ColorUser();
             $data->idUser = Auth::id();
             $data->color = $request->input('color');
             $data->save();
         }
         else{
-            log::info('update');
             DB::select('UPDATE color_users SET color = "' . $request->input('color') . '" where idUser = "'. Auth::id().'"');
         }
     }

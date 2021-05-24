@@ -31,12 +31,11 @@ function arrayurls(data){
             arrayurl.push(data);
         }
     });
-    console.log(arrayurl);
     return arrayurl;
 }
 
 function composeStringStart(data) {
-    console.log("Aquí...")
+
     let urlStart = `/datacharacter`;
 
     axios({
@@ -232,8 +231,7 @@ function composeStringUrlsBack(data){
 
 function composeStringBackComicMarvel(dataResult) {
     let data = JSON.parse(dataResult.json);
-    console.log('problemas data');
-    console.log(data);
+
 
     if (data.description != null) {
             return `
@@ -313,7 +311,6 @@ function composeStringDataBackTmdb(dataResult) {
 }
 
 function composeStringBackCharMarvel(dataResult){
-    console.log(dataResult)
     let data = JSON.parse(dataResult.json)
     if (data.description != null){
         return `
@@ -375,7 +372,6 @@ async function search() {
 
 
     const search = document.getElementById("search").value.toLowerCase();
-    console.log(search);
 
     const md5ComposeA = CryptoJS.MD5(ts + privateK + publicK).toString();
     const md5ComposeB = CryptoJS.MD5(ts2 + privateK + publicK).toString();
@@ -388,56 +384,37 @@ async function search() {
     let urlBackMarvelComics = `/datacharacterMarvelComics/${search}`;
     let urlBackTmdb = `/datacharacterTmdb/${search}`;
 
-    console.log(urlStart);
     const resultBackMarvelChar = await axios.get(urlBackMarvelChar);
     const resultBacMarvelComics =  await axios.get(urlBackMarvelComics);
     const resultBackTmdb = await axios.get(urlBackTmdb);
 
-    console.log("resultado de Busqueda en el BackEnd");
-    console.log(resultBackMarvelChar);
-    console.log(resultBacMarvelComics);
-    console.log(resultBackTmdb);
-    console.log("hasta aqui");
-
     hideH1();
     if (resultBackMarvelChar.data.length != 0 && resultBacMarvelComics.data.length != 0 && resultBackTmdb.data.length != 0) {
 
-        console.log("BackData en función")
         if (document.getElementById("visorChar") != null){
             document.getElementById("visorChar").innerHTML = "";
             document.getElementById("visorChar").innerHTML = resultBackMarvelChar.data.map(composeStringBackCharMarvel).join(" ");
-            console.log(resultBackMarvelChar.data);
         }
 
         if (document.getElementById("visorComics") != null){
             document.getElementById("visorComics").innerHTML = "";
             document.getElementById("visorComics").innerHTML = resultBacMarvelComics.data.map(composeStringBackComicMarvel).join(" ");
-            console.log(resultBacMarvelComics.data);
 
         }
         if (document.getElementById("visorTmdb") != null){
             document.getElementById("visorTmdb").innerHTML = "";
             document.getElementById("visorTmdb").innerHTML = resultBackTmdb.data.map(composeStringDataBackTmdb).join(" ");
-            console.log(resultBackTmdb.data);
         }
 
 
     } else {
-        console.log("Aquí comienzan las peticiones AXIOS");
-
 
         const requestStart = await axios.get(urlStart);
-        console.log("startKey");
-        console.log(requestStart);
-        console.log("-------------")
+
         const requestComic = await axios.get(urlComic);
-        console.log("comics");
-        console.log(requestComic.data.data);
-        console.log("-------------")
+
         const resquestTmdb = await axios.get(urlTmdb);
-        console.log("Tmdb");
-        console.log(resquestTmdb.data);
-        console.log("-------------")
+
 
         if (requestStart.status === 200 || requestComic.status === 200 || resquestTmdb.status === 200) {
 
@@ -490,7 +467,6 @@ function safeCard(element) {
 }
 function cardCheckView(element){
     let urlCardCheck = `/cardCheckView`;
-    console.log('estoy en cardCheckView');
     axios({
         method: 'post',
         url: urlCardCheck,
@@ -503,7 +479,6 @@ function cardCheckView(element){
 function deleteCard(element) {
     let urlCardSafe = `/deleteCardSafeOnLogin`;
 
-    console.log(element);
     axios({
         method: 'post',
         url: urlCardSafe,
@@ -516,7 +491,6 @@ function deleteCard(element) {
 function deleteCardCheckView(element) {
     let urlCardSafe = `/deleteCardCheckView`;
 
-    console.log(element);
     axios({
         method: 'post',
         url: urlCardSafe,
@@ -526,7 +500,6 @@ function deleteCardCheckView(element) {
     });
 
 }
-
 
 function changeImageStyle(){
     document.getElementById("imagenStyle").src="image2.jpg";
@@ -538,7 +511,6 @@ async function getCardsLogin(){
 
     let urlGetCards =`/getCardsUser`
     let returnCards = await axios.get(urlGetCards);
-    console.log(returnCards);
 
     document.getElementById("visorChar").innerHTML = returnCards.data.map(composeStringBackCharMarvelCardSave).join(" ");
     document.getElementById("visorComics").innerHTML = returnCards.data.map(composeStringBackComicMarvelCardSave).join(" ");
@@ -623,7 +595,6 @@ function composeStringBackCharMarvelCardSave(dataResult){
 function composeStringBackComicMarvelCardSave(dataResult) {
     let data = JSON.parse(dataResult.json);
 
-    //console.log(data);
     if (dataResult.platform == "Marvel-Comics"){
         document.getElementById("divComics").style.display='';
         if (data.description != null) {
@@ -706,11 +677,8 @@ function composeStringDataBackTmdbCardSave(dataResult) {
 }
 
 function checkedView(id){
-    //console.log(id);
     let checkBox = document.getElementById("checkView");
-    console.log(checkBox.checked);
     if (checkBox.checked == true) {
-        console.log('voy a cardCheckView');
         cardCheckView(id);
     }else{
         deleteCardCheckView(id);
@@ -722,7 +690,6 @@ async function dataChartView(){
     let urldata = `/typesPlatform`;
 
     const data = await axios.get(urldata);
-    console.log(data.data)
 
     let myChart = new Chart(ctx, {
         type: 'doughnut',
@@ -792,7 +759,6 @@ document.getElementById("visorOptionsColors").innerHTML = colors.map(composerCol
 
 }
 function composerColor(data){
-    //console.log(data);
     let Hexcolor = data.type;
     return`
      <button id="hola" class="flex flex-grow px-3 hover:${data.type} text-white font-bold py-2 px-4 rounded" onclick="stilo('${data.type}')">
@@ -806,7 +772,7 @@ function composerColor(data){
     </button>`
 }
 function stilo(hex){
-    console.log(hex);
+
     safeColorUser(hex);
     document.getElementById('mainto').style.backgroundColor = hex;
 }
@@ -830,10 +796,7 @@ async function getColorUser(){
 
     const data = await axios.get(urlData);
 
-    console.log(data.data[0].color);
-
     if(data.data[0].color.length  != 0){
-        console.log('Cambio hecho');
         document.getElementById('mainto').style.setProperty('background-color', data.data[0].color);
     }
 
