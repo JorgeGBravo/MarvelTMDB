@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Hola, '. Auth::user()->name . ', como estas? Hoy '.\Carbon\Carbon::now()->format('d-m-Y')) }}
+            {{ __('Hola, '. Auth::user()->name . ', como estas? Hoy es '.\Carbon\Carbon::now()->format('d-m-Y')) }}
         </h2>
     </x-slot>
 
