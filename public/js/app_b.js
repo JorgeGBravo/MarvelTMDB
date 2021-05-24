@@ -781,6 +781,10 @@ function loadColorsBackGround(){
             "name": "Grey",
             "type": "#a6a6a6"
         },
+        {
+            "name": "White",
+            "type": "#ffffff"
+        },
     ]
 
 

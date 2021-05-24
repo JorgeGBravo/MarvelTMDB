@@ -4,6 +4,12 @@
             {{ __(Auth::user()->name . ', aquí veras todas las cartas que han gustado y has clickado.') }}
         </h2>
     </x-slot>
+    <script>
+        window.onload = function (){
+            getColorUser()
+            getCardsLogin()
+        };
+    </script>
     <div id="item" class="flex flex-row ">
         <div id="left" class="w-1/5 h-screen"></div>
         <div id="center" class="w-3/5 ">
@@ -24,4 +30,5 @@
         </div>
         <div id="right" class="w-1/5 h-screen"></div>
     </div>
+
 </x-app-layout>

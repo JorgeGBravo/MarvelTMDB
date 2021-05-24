@@ -11,6 +11,7 @@
             </canvas>
             <script>
                 window.onload = function (){
+                    getColorUser()
                     dataChartView(setInterval(dataChartView, 10000))
                 };
             </script>
@@ -46,5 +47,6 @@
     </div>
     <div id="right" class="w-1/5 h-screen">
     </div>
+
 </x-app-layout>
 
