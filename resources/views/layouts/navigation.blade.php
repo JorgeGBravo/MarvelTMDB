@@ -29,7 +29,12 @@
             </div>
 
             <!-- Settings Dropdown -->
-            <div class="hidden sm:flex sm:items-center sm:ml-6">
+            <div class="hidden sm:flex sm:justify-items-stretch sm:ml-6">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex sm:justify-center" style="padding-right: 2rem;">
+                    <x-nav-link :href="route('options')" :active="request()->routeIs('options')" style="padding-right: 2rem;">
+                        {{ __('Opciones') }}
+                    </x-nav-link>
+                </div>
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <div>{{ Auth::user()->name }}</div>

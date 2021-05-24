@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ColorUser;
 use App\Models\Data;
 use App\Models\SearchQuery;
 use App\Models\User;
@@ -213,4 +214,32 @@ class DataController extends Controller
         $results = DB::select('select name from data where platform = "TMDb" ');
     }
 
+    function totalUsersBD(){
+
+        $results = DB::select('select id from users');
+
+    }
+
+    function postColorUser(Request $request){
+
+        $userColor = DB::select('select idUser from color_users');
+
+        if ($userColor == null){
+            log::info('new');
+            $data = new ColorUser();
+            $data->idUser = Auth::id();
+            $data->color = $request->input('color');
+            $data->save();
+        }
+        else{
+            log::info('update');
+            DB::select('UPDATE color_users SET color = "' . $request->input('color') . '" where idUser = "'. Auth::id().'"');
+        }
+    }
+    function getColorUser(){
+
+        $userColor = DB::select('select color from color_users where idUser= "'.Auth::id().'"');
+
+        return $userColor;
+    }
 }

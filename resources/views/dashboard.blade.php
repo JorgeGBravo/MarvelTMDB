@@ -1,10 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Hola, '. Auth::user()->name . ', como estas?') }}
+            {{ __('Hola, '. Auth::user()->name . ', como estas? Hoy '.\Carbon\Carbon::now()->format('d-m-Y')) }}
         </h2>
     </x-slot>
-    <div id="item" class="flex flex-row">
+
+    <div id="item" class="flex flex-row" onload="getColorUser()">
         <div id="left" class="w-1/5 h-screen">
             <canvas id="myChart" width="400" height="400">
             </canvas>

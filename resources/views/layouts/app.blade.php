@@ -22,7 +22,7 @@
        <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
         <script src="{{ asset('js/app_b.js') }}" defer></script>
     </head>
-    <body class="font-sans antialiased">
+    <body id="init" class="font-sans antialiased"   >
         <div class="h-31 bg-white">
             @include('layouts.navigation')
 
@@ -35,7 +35,7 @@
                 </header>
         </div>
             <!-- Page Content -->
-            <main class="bg-gray-100">
+            <main id="mainto" >
                 {{ $slot }}
             </main>
     </body>

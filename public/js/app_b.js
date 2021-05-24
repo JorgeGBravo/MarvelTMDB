@@ -366,8 +366,6 @@ function composeStringBackCharMarvel(dataResult){
         }
     }
 
-
-
 async function search() {
     const publicK = "7701abbe011f97d07fd57cbc7599a3b6";
     const privateK = "265976491cc8e9aa0bc0b62b38819bea7b45fb89";
@@ -760,4 +758,79 @@ async function dataChartView(){
             }
         }
     });
+}
+
+function loadColorsBackGround(){
+    let colors = [
+        {
+            "name": "Pink",
+            "type": "#F2BFDD"
+        },
+        {
+            "name": "Orange",
+            "type": "#F2C986"
+        },
+        {
+            "name": "lightBlue",
+            "type": "#80BBD9"
+        },{
+            "name": "Green",
+            "type": "#59D990"
+        },
+        {
+            "name": "Grey",
+            "type": "#a6a6a6"
+        },
+    ]
+
+
+document.getElementById("visorOptionsColors").innerHTML = colors.map(composerColor).join("");
+
+}
+function composerColor(data){
+    //console.log(data);
+    let Hexcolor = data.type;
+    return`
+     <button id="hola" class="flex flex-grow px-3 hover:${data.type} text-white font-bold py-2 px-4 rounded" onclick="stilo('${data.type}')">
+        <div class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0" style="background-color:${data.type}">
+            <div class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block">
+                <div class="w-12 font-medium text-gray-900">
+                    ${data.name}
+                </div>
+            </div>
+        </div>
+    </button>`
+}
+function stilo(hex){
+    console.log(hex);
+    safeColorUser(hex);
+    document.getElementById('mainto').style.backgroundColor = hex;
+}
+
+
+function safeColorUser(element) {
+    let urlColorSafe = `/newColorUser`;
+
+    console.log(element);
+    axios({
+        method: 'post',
+        url: urlColorSafe,
+        data: {
+            color: element,
+        }
+    });
+}
+
+async function getColorUser(){
+    let urlData = `/getColorUser`;
+
+    const data = await axios.get(urlData);
+
+    console.log(data.data[0].color);
+
+    if(data.data[0].color.length  != 0){
+        console.log('Cambio hecho');
+        document.getElementById('mainto').style.setProperty('background-color', data.data[0].color);
+    }
+
 }

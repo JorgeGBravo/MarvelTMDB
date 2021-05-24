@@ -31,6 +31,10 @@ Route::get('/tmdb', function () {
     return view('tmdb');
 })->middleware(['auth'])->name('tmdb');
 
+Route::get('/options', function () {
+    return view('options');
+})->middleware(['auth'])->name('options');
+
 require __DIR__.'/auth.php';
 
 
@@ -41,6 +45,7 @@ Route::get('/datacharacterMarvelComics/{query}', [DataController::class, 'logued
 Route::get('/datacharacterTmdb/{query}', [DataController::class, 'loguedCheckCaractersTmdb']);
 Route::get('/getCardsUser', [DataController::class, 'getCardsView']);
 Route::get('/typesPlatform',[DataController::class, 'getPlatform']);
+Route::get('/getColorUser',[DataController::class, 'getColorUser']);
 
 
 
@@ -50,6 +55,7 @@ Route::post('/cardSafeLogin', [DataController::class, 'cardSafeOnLogin']);
 Route::post('/deleteCardSafeOnLogin', [DataController::class, 'deleteCardSafeOnLogin']);
 Route::post('/deleteCardCheckView', [DataController::class, 'deleteCardCheckView']);
 Route::post('/cardCheckView', [DataController::class, 'cardCheckView']);
+Route::post('/newColorUser', [DataController::class, 'postColorUser']);
 
 
 
