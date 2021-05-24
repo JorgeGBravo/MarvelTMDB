@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Hola, '. Auth::user()->name . ', como estas? jhgffEstoy en .... TMDB') }}
+            {{ __( Auth::user()->name . ', aquí podrás encontrar cualquier película de TheMovieDb') }}
         </h2>
     </x-slot>
 
