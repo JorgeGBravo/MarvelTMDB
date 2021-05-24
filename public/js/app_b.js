@@ -781,7 +781,6 @@ function stilo(hex){
 function safeColorUser(element) {
     let urlColorSafe = `/newColorUser`;
 
-    console.log(element);
     axios({
         method: 'post',
         url: urlColorSafe,
