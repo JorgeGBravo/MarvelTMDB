@@ -24,7 +24,7 @@
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg opacity-60" style="z-index: 2">
                     <div class=" p-6 bg-white border-b border-gray-200">
                         <div id="buscador" class="text-center mb-10">
-                            <label for="search"></label><input id="search" onchange="search()"  type="text" placeholder="Encuentra tu personaje y comic... " autofocus>
+                            <label for="search"></label><input id="search" onchange="search()"  type="text" placeholder="Personajes y Comics..." autofocus>
                         </div>
                     </div>
                 </div>
