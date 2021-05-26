@@ -6,7 +6,7 @@
     </x-slot>
 
         <div id="buscador" class="text-center bg-white">
-            <label for="search"></label><input id="search" onchange="search()" type="text" placeholder="Busca tu personaje... "  autofocus>
+            <label for="search"></label><input id="search" onchange="search()" type="text" placeholder="Encuentra tu pelicula... "  autofocus>
         </div>
     <div id="item" class="flex flex-row ">
         <div id="left" class="w-1/5 h-screen"></div>
