@@ -131,7 +131,7 @@ class DataController extends Controller
     {
         $resultados = DB::select('select idPlatform from userCheckViews  where idUser = "' . Auth::id() . '" AND idPlatform = "' . $event->input('idData') . '"');
         if ($resultados == null) {
-            $check = new UserCheckView();
+            $check = new userCheckView();
             $check->idUser = Auth::id();
             $check->idPlatform = $event->input('idPlatform');
             $check->save();
