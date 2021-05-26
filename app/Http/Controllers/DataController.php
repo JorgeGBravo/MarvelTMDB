@@ -6,7 +6,7 @@ use App\Models\ColorUser;
 use App\Models\Data;
 use App\Models\SearchQuery;
 use App\Models\User;
-use App\Models\userCheckView;
+use App\Models\UserCheckView;
 use App\Models\UserCheck;
 use App\Models\QueryData;
 use Carbon\Carbon;
@@ -131,7 +131,7 @@ class DataController extends Controller
     {
         $resultados = DB::select('select idPlatform from userCheckViews  where idUser = "' . Auth::id() . '" AND idPlatform = "' . $event->input('idData') . '"');
         if ($resultados == null) {
-            $check = new userCheckView();
+            $check = new UserCheckView();
             $check->idUser = Auth::id();
             $check->idPlatform = $event->input('idPlatform');
             $check->save();
