@@ -92,7 +92,7 @@ class DataController extends Controller
 
     function loguedCheckCaractersTmdb($query)
     {
-        $resultados = DB::select('select json , data.idData from data INNER JOIN querydata ON data.idData = querydata.idData INNER JOIN searchqueries ON searchqueries.idQueries = querydata.idQueries
+        $resultados = DB::select('select json , data.idData from data INNER JOIN queryData ON data.idData = queryData.idData INNER JOIN searchqueries ON searchqueries.idQueries = queryData.idQueries
                         where searchqueries.searchQuery = "' . $query . '" AND platform = "TMDb" AND data.created_at  BETWEEN  "' . Carbon::now()->subDays(10) . '" AND "' . Carbon::now() . '"');
 
         if (count($resultados) > 0) {
@@ -104,7 +104,7 @@ class DataController extends Controller
 
     function loguedCheckCaractersMarvelChar($query)
     {
-        $resultados = DB::select('select json, data.idData from data INNER JOIN querydata ON data.idData = querydata.idData INNER JOIN searchqueries ON searchqueries.idQueries = querydata.idQueries
+        $resultados = DB::select('select json, data.idData from data INNER JOIN queryData ON data.idData = queryData.idData INNER JOIN searchqueries ON searchqueries.idQueries = queryData.idQueries
                         where searchqueries.searchQuery = "' . $query . '" AND platform = "Marvel-Char" AND data.created_at  BETWEEN  "' . Carbon::now()->subDays(10) . '" AND "' . Carbon::now() . '"');
 
         if (count($resultados) > 0) {
@@ -117,7 +117,7 @@ class DataController extends Controller
 
     function loguedCheckCaractersMarvelComics($query)
     {
-        $resultados = DB::select('select json, data.idData from data INNER JOIN querydata ON data.idData = querydata.idData INNER JOIN searchqueries ON searchqueries.idQueries = querydata.idQueries
+        $resultados = DB::select('select json, data.idData from data INNER JOIN queryData ON data.idData = queryData.idData INNER JOIN searchqueries ON searchqueries.idQueries = queryData.idQueries
                         where searchqueries.searchQuery = "' . $query . '" AND platform = "Marvel-Comics" AND data.created_at  BETWEEN  "' . Carbon::now()->subDays(10) . '" AND "' . Carbon::now() . '"');
 
         if (count($resultados) > 0) {
