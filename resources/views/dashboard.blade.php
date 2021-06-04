@@ -46,6 +46,7 @@
         </div>
     </div>
     <div id="right" class="w-1/5 h-screen">
+
     </div>
 
 </x-app-layout>

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DataController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\Auth;
 
 /*
@@ -37,6 +38,11 @@ Route::get('/options', function () {
 
 require __DIR__.'/auth.php';
 
+Route::get('/chat', function () {
+    return view('chat.index');
+})->middleware(['auth'])->name('dashboard');
+
+
 
 
 Route::get('/datacharacter/{query}', [DataController::class, 'checkCharacter']);
@@ -46,6 +52,7 @@ Route::get('/datacharacterTmdb/{query}', [DataController::class, 'loguedCheckCar
 Route::get('/getCardsUser', [DataController::class, 'getCardsView']);
 Route::get('/typesPlatform',[DataController::class, 'getPlatform']);
 Route::get('/getColorUser',[DataController::class, 'getColorUser']);
+//Route::get('/chat',[ChatController::class,'index'] );
 
 
 
