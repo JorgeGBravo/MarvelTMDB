@@ -3,7 +3,7 @@
 
     <div class="col mx-3 my-3">
 
-        <div class="row">
+        <div class="col">
             <div class="col-md-6">
                 @livewire("chat-list")
             </div>

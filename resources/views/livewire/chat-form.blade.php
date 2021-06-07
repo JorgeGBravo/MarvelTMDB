@@ -26,7 +26,8 @@
                wire:model="mensaje"
                wire:keydown.enter="enviarMensaje"
                class="form-control"
-               id="mensaje">
+               id="mensaje"
+               onclick="limpiarFormulario()">
 
         <!-- Validación -->
         @error("mensaje")
@@ -51,6 +52,7 @@
         </div>
         <div class="col-6 pt-2 text-right">
             <button
+                id="boton"
                 class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out"
                 wire:click="enviarMensaje"
                 wire:loading.attr="disabled"
@@ -60,6 +62,9 @@
     </div>
 
     <script>
+        function limpiarFormulario() {
+            document.getElementById('mensaje').value = "";
+        };
 
         // Esto lo recibimos en JS cuando lo emite el componente
         // El evento "enviadoOK"
@@ -69,6 +74,8 @@
                 setTimeout(function(){ $("#avisoSuccess").fadeOut("slow"); }, 3000);
             });
         });
+
+
 
     </script>
 
