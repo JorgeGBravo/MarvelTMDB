@@ -16,6 +16,8 @@
         html, body{
             font-family: 'PT Sans', sans-serif;
         }
+        input.form-control{
+        }
     </style>
     @livewireStyles
     @livewireScripts

@@ -5,10 +5,10 @@
 
         <div class="row">
             <div class="col-md-6">
-                @livewire("chat-form")
+                @livewire("chat-list")
             </div>
             <div class="col-md-6">
-                @livewire("chat-list")
+                @livewire("chat-form")
             </div>
         </div>
 

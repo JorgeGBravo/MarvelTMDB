@@ -46,7 +46,7 @@
         </div>
     </div>
     <div id="right" class="w-1/5 h-screen">
-
+  <!-- <iframe  width="400" height="900" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://127.0.0.1:8000/chat"></iframe>-->
     </div>
 
 </x-app-layout>
