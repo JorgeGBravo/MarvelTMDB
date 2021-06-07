@@ -1,4 +1,8 @@
+<div class="">
 
+    <a href="/" style="color: black;">
+        <h2 class="pb-0 mb-0"><strong>Live Chat</strong></h2>
+    </a>
 <div class="mt-3">
 
     <h3><strong>Últimos 5 mensajes</strong></h3>
@@ -9,12 +13,12 @@
                 <div>
 
                     @if($mensaje["recibido"])
-                        <div class="alert alert-warning" style="margin-right: 50px;">
+                        <div class="alert alert-primary" style="margin-right: 50px; box-shadow: 5px 5px 0px lightblue;">
                             <strong>{{$mensaje["usuario"]}}</strong><small class="float-right">{{$mensaje["fecha"]}}</small>
                             <br><span class="text-muted">{{$mensaje["mensaje"]}}</span>
                         </div>
                     @else
-                        <div class="alert alert-success" style="margin-left: 50px;">
+                        <div class="alert alert-light" style="margin-left: 50px; box-shadow: 10px 10px 0px lightgrey;">
                             <strong>{{$mensaje["usuario"]}}</strong><small class="float-right">{{$mensaje["fecha"]}}</small>
                             <br><span class="text-muted">{{$mensaje["mensaje"]}}</span>
                         </div>
