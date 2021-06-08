@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmailController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\ChatController;
@@ -54,6 +55,9 @@ Route::get('/typesPlatform',[DataController::class, 'getPlatform']);
 Route::get('/getColorUser',[DataController::class, 'getColorUser']);
 //Route::get('/chat',[ChatController::class,'index'] );
 
+Route::get('/mail', function (){return view('mail.test');});
+
+Route::post('/send', 'EmailController@contact')->name('contact');
 
 
 Route::post('/datacharacter', [DataController::class, 'postCharacter']);
